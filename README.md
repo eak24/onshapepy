@@ -89,3 +89,6 @@ For general information on our API keys and how they work, read this
 [document](https://github.com/onshape/apikey/blob/master/README.md). For general
 API support, please reach out to us at
 [api-support@onshape.com](mailto:api-support@onshape.com).
+
+# onshape_connector
+An OnShape connector that allows for the configuration os many different parts in an assembly via a YAML.
