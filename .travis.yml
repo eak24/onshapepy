@@ -1,0 +1,18 @@
+language: python
+sudo: false
+python:
+- '3.6'
+install:
+- pip install -r requirements-dev.txt
+script:
+- pytest --cov=./
+deploy:
+  provider: pypi
+  user: $PYPI_USERNAME
+  password: $PYPI_PASSWORD
+  on:
+    tags: true
+    branch: master
+  distributions: sdist
+after_success:
+- codecov
