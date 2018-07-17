@@ -16,12 +16,12 @@ stacks = {
 c = Client(stack=stacks['cad'], logging=True)
 
 # get features for doc
-did = raw_input('Enter document ID: ')
-wid = raw_input('Enter workspace ID: ')
-eid = raw_input('Enter element ID: ')
+did = input('Enter document ID: ')
+wid = input('Enter workspace ID: ')
+eid = input('Enter element ID: ')
 
 # get the STL export
 stl = c.part_studio_stl(did, wid, eid)
 
 # print to the console
-print stl.text
+print(stl.text)

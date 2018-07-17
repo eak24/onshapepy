@@ -16,6 +16,7 @@ config = {
     'packages': [
         'apikey'
     ],
+    'install_requires': ['requests'],
     'classifiers': [
         'Programming Language :: Python',
         'Operating System :: MacOS :: MacOS X',
