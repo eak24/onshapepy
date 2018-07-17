@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 creds.json
 *.pyc
 *.idea
-=======
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -107,4 +105,3 @@ venv.bak/
 
 # mypy
 .mypy_cache/
->>>>>>> 2f342cac08a67b7f8a6b541e1a4e75f1be03a70e
