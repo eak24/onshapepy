@@ -8,11 +8,14 @@ script:
 - pytest --cov=./
 deploy:
   provider: pypi
-  user: $PYPI_USERNAME
-  password: $PYPI_PASSWORD
+  user: "$PYPI_USERNAME"
+  password: "$PYPI_PASSWORD"
   on:
     tags: true
     branch: master
   distributions: sdist
 after_success:
 - codecov
+before_install:
+- openssl aes-256-cbc -K $encrypted_0b30f5022c54_key -iv $encrypted_0b30f5022c54_iv
+  -in creds.json.enc -out creds.json -d
