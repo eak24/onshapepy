@@ -1,0 +1,11 @@
+##########sphinx stuff###############
+Sphinx
+##########codecov###################
+codecov
+coverage
+##########pytest###################
+pytest
+ruamel.yaml
+aide_design
+scipy
+pytest-cov
