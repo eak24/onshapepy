@@ -1,4 +1,4 @@
-# Python 3 API Key Sample
+# Python 3 API Key Sample [![Build Status](https://travis-ci.org/AguaClara/onshape.svg?branch=master)](https://travis-ci.org/AguaClara/onshape)
 
 Simple demonstration of getting a key and structuring API calls.
 
