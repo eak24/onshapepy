@@ -5,19 +5,15 @@ from onshape.client import Client
 did = "8ec353ba00f37f447b5a61f5"
 wid = "04c36c786829759832bd3d1a"
 eid = "2918f0f5adfa39d3047f19d0"
+vid = "b06892ff35a9ef5787d66485"
 
-part = {"did": did, "wid": wid, "eid": eid}
+part_in_another_doc = {"did": "2d47b6abec9d1de1d2538372", "vid": "f2d396ba0762dc1f1dab3de1", "eid": "0639ea3c439aa0947744d29a"}
+part = {"did": did, "wid": wid, "eid": eid, "vid": vid}
 assembly = part.copy()
 assembly["eid"]= "6f1f9c485ff1e639f4db63c0"
 
 def setup_client():
-    # stacks to choose from
-    stacks = {
-        'cad': 'https://cad.onshape.com'
-    }
-
-    # create instance of the onshape client; change key to test on another stack
-    c = Client(stack=stacks['cad'], logging=True)
+    c = Client()
     return c
 
 def test_new_doc():
@@ -38,5 +34,10 @@ def test_rename_document():
 
 def test_insert_configured_part():
     c=setup_client()
-    res = c.insert_configured_part(assembly, part, {"height": "3 m"})
+    res = c.insert_configured_part(assembly, part_in_another_doc, {"h": "3 m"})
+    assert res.status_code == 200
+
+def test_get_configuration():
+    c = setup_client()
+    res = c.get_configuration(part)
     assert res.status_code == 200

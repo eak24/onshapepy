@@ -218,7 +218,7 @@ class Client():
 
 # Below are functions added for AguaClara
 
-    def insert_configured_part(self, assembly, part, configuration):
+    def insert_configured_part(self, assembly_uri, part_uri, configuration):
         '''
         Insert a configurable part into an assembly
 
@@ -232,18 +232,19 @@ class Client():
         '''
 
         payload = {
-          "documentId": part["did"],
-          "elementId": part["eid"],
+          "documentId": part_uri["did"],
+          "elementId": part_uri["eid"],
           # could be added if needed:
-          # "versionId": "String",
+          # "partId": "String",
+          # "featureId": "String",
+          # "microversionId": "String",
+          "versionId": part_uri["vid"],
           # "microversionId": "String",
           "isAssembly": False,
           "isWholePartStudio": True,
-          # "partId": "String",
-          # "featureId": "String",
-          "configuration": self.encode_configuration(part["did"], part["eid"], configuration)
+          "configuration": self.encode_configuration(part_uri["did"], part_uri["eid"], configuration)
         }
-        return self._api.request('post', '/api/assemblies/d/' + assembly["did"] + '/w/' + assembly["wid"] + '/e/' + assembly["eid"] + '/instances', body=payload)
+        return self._api.request('post', '/api/assemblies/d/' + assembly_uri["did"] + '/w/' + assembly_uri["wid"] + '/e/' + assembly_uri["eid"] + '/instances', body=payload)
 
     def encode_configuration(self, did, eid, parameters):
         '''
@@ -271,3 +272,21 @@ class Client():
         res = self._api.request('post', '/api/elements/d/' + did  + '/e/' + eid + '/configurationencodings', body=payload, headers=req_headers)
 
         return json.loads(res.content.decode("utf-8"))["encodedId"]
+
+
+    def get_configuration(self, uri):
+        '''
+        get the configuration of a PartStudio
+
+        Args:
+            - uri (dict): points to a particular element
+
+        Returns:
+            - requests.Response: Onshape response data
+        '''
+
+        req_headers = {
+            'Accept': 'application/vnd.onshape.v1+json',
+            'Content-Type': 'application/json'
+        }
+        return self._api.request('get', '/api/partstudios/d/' + uri["did"] + '/v/' + uri["vid"] + '/e/' + uri["eid"] + '/configuration', headers=req_headers)
