@@ -1,4 +1,4 @@
-from apikey.client import Client
+from onshape.client import Client
 
 # assembly to import into
 assembly_id = "6f1f9c485ff1e639f4db63c0"

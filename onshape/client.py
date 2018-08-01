@@ -11,6 +11,7 @@ import mimetypes
 import random
 import string
 import os
+import json
 
 
 class Client():
@@ -214,3 +215,59 @@ class Client():
             'Accept': 'application/vnd.onshape.v1+octet-stream'
         }
         return self._api.request('get', '/api/partstudios/d/' + did + '/w/' + wid + '/e/' + eid + '/stl', headers=req_headers)
+
+# Below are functions added for AguaClara
+
+    def insert_configured_part(self, assembly, part, configuration):
+        '''
+        Insert a configurable part into an assembly
+
+        Args:
+            - assembly (dict): eid, wid, and did of the assembly into which will be inserted
+            - part (dict): eid and did of the configurable part
+            - configuration (dict): the configuration
+
+        Returns:
+            - requests.Response: Onshape response data
+        '''
+
+        payload = {
+          "documentId": part["did"],
+          "elementId": part["eid"],
+          # could be added if needed:
+          # "versionId": "String",
+          # "microversionId": "String",
+          "isAssembly": False,
+          "isWholePartStudio": True,
+          # "partId": "String",
+          # "featureId": "String",
+          "configuration": self.encode_configuration(part["did"], part["eid"], configuration)
+        }
+        return self._api.request('post', '/api/assemblies/d/' + assembly["did"] + '/w/' + assembly["wid"] + '/e/' + assembly["eid"] + '/instances', body=payload)
+
+    def encode_configuration(self, did, eid, parameters):
+        '''
+        Encode parameters as a URL-ready string
+
+        Args:
+            - did (str): Document ID
+            - eid (str): Element ID
+            - parameters (dict): key-value pairs of the parameters to be encoded
+        Returns:
+            - configuration (str): the url-ready configuration string.
+        '''
+        # change to the type of list the API is expecting
+        parameters = [{"parameterId": k, "parameterValue": v} for (k,v) in parameters.items()]
+
+        payload = {
+            'parameters':parameters
+
+        }
+        req_headers = {
+            'Accept': 'application/vnd.onshape.v1+json',
+            'Content-Type': 'application/json'
+        }
+
+        res = self._api.request('post', '/api/elements/d/' + did  + '/e/' + eid + '/configurationencodings', body=payload, headers=req_headers)
+
+        return json.loads(res.content.decode("utf-8"))["encodedId"]

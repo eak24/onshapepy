@@ -5,7 +5,7 @@ exportstl
 Demos 307 redirects with the Onshape API
 '''
 
-from apikey.client import Client
+from onshape.client import Client
 
 # stacks to choose from
 stacks = {
