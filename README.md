@@ -1,4 +1,5 @@
 # Python 3 API Key Sample [![Build Status](https://travis-ci.org/AguaClara/onshape.svg?branch=master)](https://travis-ci.org/AguaClara/onshape)
+[![codecov](https://codecov.io/gh/AguaClara/onshape/branch/master/graph/badge.svg)](https://codecov.io/gh/AguaClara/onshape)
 
 Simple demonstration of getting a key and structuring API calls.
 
