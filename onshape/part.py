@@ -19,6 +19,8 @@ class Part():
             - did (str): document id
             - vid (str): the version id
             - eid (str): element id
+            - params (dict, opt): dict of parameter objects. These are objects that return valid parameter settings
+                when encoded as a string.
         """
         self.uri = {"did": did, "vid": vid, "eid": eid}
         self.params = params

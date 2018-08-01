@@ -16,22 +16,41 @@ API Key
 -------
 To give OnShape access to your account, you'll need to access your API key here and put it into a creds.json file that looks like this:
 
-{
-    "https://cad.onshape.com": {
-        "access_key": "*******YOUR API KEY*******",
-        "secret_key": "*******YOUR API SECRET****"
-    }
-}
+.. code-block:: JSON
+
+   {
+       "https://cad.onshape.com": {
+           "access_key": "*******YOUR API KEY*******",
+           "secret_key": "*******YOUR API SECRET****"
+       }
+   }
+
+
 Quick demo:
 -----------
-.. todo::
-   finish this section!
 
-.. code-block::python
+Copy a document and adjust cube parameters from python!
+
+.. code-block:: Python
+
+   import onshape
+   from onshape import Part
+   from onshape import Client
+
+   # load the API key
+   c = Client(creds = "file path to creds")
+
+   # load the client for this part
+   my_cube = Part("cube","cube","cube")
+   my_pyramid = Assembly(did, wid, eid)
 
 
+   # set various parameters
+   my_cube.params["h"]["value"] = 5 * 20
+   my_cube.params["h"]["units"] = "inch"
 
-
+   # Insert into the assembly
+   my_pyramid.insert(my_cube, c)
 
 .. toctree::
    :maxdepth: 2
