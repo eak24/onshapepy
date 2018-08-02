@@ -1,5 +1,5 @@
 from tests.test_basic import setup_client
-from onshape.part import Part
+from onshapepy.part import Part
 from tests.test_basic import assembly
 from tests.test_basic import part
 

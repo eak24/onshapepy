@@ -5,14 +5,14 @@ exportstl
 Demos 307 redirects with the Onshape API
 '''
 
-from onshape.client import Client
+from onshapepy.client import Client
 
 # stacks to choose from
 stacks = {
     'cad': 'https://cad.onshape.com'
 }
 
-# create instance of the onshape client; change key to test on another stack
+# create instance of the onshapepy client; change key to test on another stack
 c = Client(stack=stacks['cad'], logging=True)
 
 # get features for doc

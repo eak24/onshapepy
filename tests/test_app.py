@@ -5,14 +5,14 @@ app
 Demos basic usage of the Onshape API
 '''
 
-from onshape.client import Client
+from onshapepy.client import Client
 
 # stacks to choose from
 stacks = {
     'cad': 'https://cad.onshape.com'
 }
 
-# create instance of the onshape client; change key to test on another stack
+# create instance of the onshapepy client; change key to test on another stack
 c = Client(stack=stacks['cad'], logging=True)
 
 # make a new document and grab the document ID and workspace ID

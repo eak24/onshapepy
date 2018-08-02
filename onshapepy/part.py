@@ -2,10 +2,10 @@
 part
 ====
 
-OnShape part that maps to an element of a part studio
+OnShape part that maps to a part studio
 '''
 
-from onshape.client import Client
+from onshapepy.client import Client
 import json
 
 class Part():
