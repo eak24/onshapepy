@@ -1,7 +1,7 @@
 language: python
 sudo: false
 python:
-- '3.6'
+- '3.5'
 before_install:
  - export NOKOGIRI_USE_SYSTEM_LIBRARIES=true
  - openssl aes-256-cbc -K $encrypted_0b30f5022c54_key -iv $encrypted_0b30f5022c54_iv

@@ -1,11 +1,9 @@
 ##########sphinx stuff###############
 Sphinx
+sphinx-rtd-theme==0.4.0
 ##########codecov###################
 codecov
 coverage
 ##########pytest###################
 pytest
-ruamel.yaml
-aide_design
-scipy
 pytest-cov
