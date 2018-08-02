@@ -13,14 +13,14 @@ addons:
 install:
   - pip install -r requirements-dev.txt
   - gem install html-proofer
-  - cd docs
+script:
+  - pytest --cov=./
+  - cd docs # build the docs... should be moved to before_deploy?
   - make html
   - make doctest
   - htmlproofer _build/html --allow_hash_href --file_ignore "_build/html/search.html"
-script:
-- pytest --cov=./
 after_success:
-- codecov
+  - codecov
 deploy:
   - provider: pypi
     user: "$PYPI_USERNAME"
