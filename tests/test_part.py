@@ -1,7 +1,7 @@
-from tests.test_basic import setup_client
-from onshape.part import Part
-from tests.test_basic import assembly
-from tests.test_basic import part
+from tests.test_client import setup_client
+from onshapepy.part import Part
+from tests.test_client import assembly
+from tests.test_client import part
 
 my_cube = Part("2d47b6abec9d1de1d2538372", "f2d396ba0762dc1f1dab3de1", "0639ea3c439aa0947744d29a")
 

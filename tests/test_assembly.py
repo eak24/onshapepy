@@ -1,6 +1,6 @@
-from onshape.part import Part
-from onshape.assembly import Assembly
-from onshape.client import Client
+from onshapepy.part import Part
+from onshapepy.assembly import Assembly
+from onshapepy.client import Client
 
 # load the client for this part
 my_cube = Part("2d47b6abec9d1de1d2538372", "f2d396ba0762dc1f1dab3de1", "0639ea3c439aa0947744d29a")

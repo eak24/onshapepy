@@ -1,4 +1,4 @@
-from onshape.client import Client
+from onshapepy.client import Client
 
 # This is from a test document on OnShape, publicly available. It is a standard cube in a partStudio.
 # https://cad.onshape.com/documents/8ec353ba00f37f447b5a61f5/w/04c36c786829759832bd3d1a/e/2918f0f5adfa39d3047f19d0
