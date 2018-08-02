@@ -19,6 +19,7 @@ script:
   - make html
   - make doctest
   - htmlproofer _build/html --allow_hash_href --file_ignore "_build/html/search.html"
+  - cd ..
 after_success:
   - codecov
 deploy:
@@ -27,7 +28,6 @@ deploy:
     password: "$PYPI_PASSWORD"
     on:
       tags: true
-      branch: master
     distributions: sdist
   - provider: pages # Deploy to to gh-pages
     skip-cleanup: true
