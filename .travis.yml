@@ -1,0 +1,42 @@
+language: python
+sudo: false
+python:
+- '3.6'
+before_install:
+ - export NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+ - openssl aes-256-cbc -K $encrypted_0b30f5022c54_key -iv $encrypted_0b30f5022c54_iv
+  -in creds.json.enc -out creds.json -d
+addons:
+  apt:
+    packages:
+    - libcurl4-openssl-dev # required to avoid SSL errors
+install:
+  - pip install -r requirements-dev.txt
+  - gem install html-proofer
+  - cd docs
+  - make html
+  - make doctest
+  - htmlproofer _build/html --allow_hash_href --file_ignore "_build/html/search.html"
+script:
+- pytest --cov=./
+after_success:
+- codecov
+deploy:
+  - provider: pypi
+    user: "$PYPI_USERNAME"
+    password: "$PYPI_PASSWORD"
+    on:
+      tags: true
+      branch: master
+    distributions: sdist
+  - provider: pages # Deploy to to gh-pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+    keep-history: true
+    local-dir: _build
+    target-branch: gh-pages
+    on:
+      tags: true
+
+
+
