@@ -1,7 +1,7 @@
-onshape
-=======
+onshapepy
+=========
 
 .. toctree::
    :maxdepth: 4
 
-   onshape
+   onshapepy
