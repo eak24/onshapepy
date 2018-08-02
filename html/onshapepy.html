@@ -1,0 +1,626 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>onshapepy package &mdash; onshapepy 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> onshapepy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">onshapepy package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-onshapepy.assembly">onshapepy.assembly module</a></li>
+<li><a class="reference internal" href="#module-onshapepy.client">onshapepy.client module</a><ul>
+<li><a class="reference internal" href="#client">client</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-onshapepy.onshape">onshapepy.onshape module</a><ul>
+<li><a class="reference internal" href="#onshape">onshape</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-onshapepy.part">onshapepy.part module</a><ul>
+<li><a class="reference internal" href="#part">part</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-onshapepy.utils">onshapepy.utils module</a><ul>
+<li><a class="reference internal" href="#utils">utils</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-onshapepy">Module contents</a><ul>
+<li><a class="reference internal" href="#onshapepy">onshapepy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">onshapepy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>onshapepy package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/onshapepy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="onshapepy-package">
+<h1>onshapepy package<a class="headerlink" href="#onshapepy-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-onshapepy.assembly">
+<span id="onshapepy-assembly-module"></span><h2>onshapepy.assembly module<a class="headerlink" href="#module-onshapepy.assembly" title="Permalink to this headline">¶</a></h2>
+<p>An OnShape assembly</p>
+<dl class="class">
+<dt id="onshapepy.assembly.Assembly">
+<em class="property">class </em><code class="descclassname">onshapepy.assembly.</code><code class="descname">Assembly</code><span class="sig-paren">(</span><em>did</em>, <em>wid</em>, <em>eid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/assembly.html#Assembly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.assembly.Assembly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="onshapepy.assembly.Assembly.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>part</em>, <em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/assembly.html#Assembly.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.assembly.Assembly.insert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-onshapepy.client">
+<span id="onshapepy-client-module"></span><h2>onshapepy.client module<a class="headerlink" href="#module-onshapepy.client" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="client">
+<h3>client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h3>
+<p>Convenience functions for working with the Onshape API</p>
+<dl class="class">
+<dt id="onshapepy.client.Client">
+<em class="property">class </em><code class="descclassname">onshapepy.client.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>stack='https://cad.onshape.com'</em>, <em>logging=True</em>, <em>creds='./creds.json'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Defines methods for testing the Onshape API. Comes with several methods:</p>
+<ul class="simple">
+<li>Create a document</li>
+<li>Delete a document</li>
+<li>Get a list of documents</li>
+</ul>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><ul class="first last simple">
+<li>stack (str, default=’<a class="reference external" href="https://cad.onshape.com">https://cad.onshape.com</a>’): Base URL</li>
+<li>logging (bool, default=True): Turn logging on or off</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="onshapepy.client.Client.create_assembly">
+<code class="descname">create_assembly</code><span class="sig-paren">(</span><em>did</em>, <em>wid</em>, <em>name='My Assembly'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.create_assembly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.create_assembly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new assembly element in the specified document / workspace.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>did (str): Document ID</li>
+<li>wid (str): Workspace ID</li>
+<li>name (str, default=’My Assembly’)</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.del_document">
+<code class="descname">del_document</code><span class="sig-paren">(</span><em>did</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.del_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.del_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the specified document.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>did (str): Document ID</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.encode_configuration">
+<code class="descname">encode_configuration</code><span class="sig-paren">(</span><em>did</em>, <em>eid</em>, <em>parameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.encode_configuration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.encode_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode parameters as a URL-ready string</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>did (str): Document ID</li>
+<li>eid (str): Element ID</li>
+<li>parameters (dict): key-value pairs of the parameters to be encoded</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>configuration (str): the url-ready configuration string.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.get_configuration">
+<code class="descname">get_configuration</code><span class="sig-paren">(</span><em>uri</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.get_configuration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.get_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the configuration of a PartStudio</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>uri (dict): points to a particular element</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.get_document">
+<code class="descname">get_document</code><span class="sig-paren">(</span><em>did</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.get_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.get_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get details for a specified document.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>did (str): Document ID</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.get_features">
+<code class="descname">get_features</code><span class="sig-paren">(</span><em>did</em>, <em>wid</em>, <em>eid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.get_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.get_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the feature list for specified document / workspace / part studio.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>did (str): Document ID</li>
+<li>wid (str): Workspace ID</li>
+<li>eid (str): Element ID</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.get_partstudio_tessellatededges">
+<code class="descname">get_partstudio_tessellatededges</code><span class="sig-paren">(</span><em>did</em>, <em>wid</em>, <em>eid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.get_partstudio_tessellatededges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.get_partstudio_tessellatededges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the tessellation of the edges of all parts in a part studio.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>did (str): Document ID</li>
+<li>wid (str): Workspace ID</li>
+<li>eid (str): Element ID</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.insert_configured_part">
+<code class="descname">insert_configured_part</code><span class="sig-paren">(</span><em>assembly_uri</em>, <em>part_uri</em>, <em>configuration</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.insert_configured_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.insert_configured_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a configurable part into an assembly</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>assembly (dict): eid, wid, and did of the assembly into which will be inserted</li>
+<li>part (dict): eid and did of the configurable part</li>
+<li>configuration (dict): the configuration</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.list_documents">
+<code class="descname">list_documents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.list_documents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.list_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of documents for current user.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.new_document">
+<code class="descname">new_document</code><span class="sig-paren">(</span><em>name='Test Document'</em>, <em>owner_type=0</em>, <em>public=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.new_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.new_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new document.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>name (str, default=’Test Document’): The doc name</li>
+<li>owner_type (int, default=0): 0 for user, 1 for company, 2 for team</li>
+<li>public (bool, default=False): Whether or not to make doc public</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.part_studio_stl">
+<code class="descname">part_studio_stl</code><span class="sig-paren">(</span><em>did</em>, <em>wid</em>, <em>eid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.part_studio_stl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.part_studio_stl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports STL export from a part studio</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>did (str): Document ID</li>
+<li>wid (str): Workspace ID</li>
+<li>eid (str): Element ID</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.rename_document">
+<code class="descname">rename_document</code><span class="sig-paren">(</span><em>did</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.rename_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.rename_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Renames the specified document.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>did (str): Document ID</li>
+<li>name (str): New document name</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.client.Client.upload_blob">
+<code class="descname">upload_blob</code><span class="sig-paren">(</span><em>did</em>, <em>wid</em>, <em>filepath='./blob.json'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/client.html#Client.upload_blob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.client.Client.upload_blob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uploads a file to a new blob element in the specified doc.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>did (str): Document ID</li>
+<li>wid (str): Workspace ID</li>
+<li>filepath (str, default=’./blob.json’): Blob element location</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-onshapepy.onshape">
+<span id="onshapepy-onshape-module"></span><h2>onshapepy.onshape module<a class="headerlink" href="#module-onshapepy.onshape" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="onshape">
+<h3>onshape<a class="headerlink" href="#onshape" title="Permalink to this headline">¶</a></h3>
+<p>Provides access to the Onshape REST API</p>
+<dl class="class">
+<dt id="onshapepy.onshape.Onshape">
+<em class="property">class </em><code class="descclassname">onshapepy.onshape.</code><code class="descname">Onshape</code><span class="sig-paren">(</span><em>stack</em>, <em>creds='./creds.json'</em>, <em>logging=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/onshape.html#Onshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.onshape.Onshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Provides access to the Onshape REST API.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><ul class="first last simple">
+<li>stack (str): Base URL</li>
+<li>creds (str, default=’./creds.json’): Credentials location</li>
+<li>logging (bool, default=True): Turn logging on or off</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="onshapepy.onshape.Onshape.request">
+<code class="descname">request</code><span class="sig-paren">(</span><em>method</em>, <em>path</em>, <em>query={}</em>, <em>headers={}</em>, <em>body={}</em>, <em>base_url=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/onshape.html#Onshape.request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.onshape.Onshape.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Issues a request to Onshape</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>method (str): HTTP method</li>
+<li>path (str): Path  e.g. /api/documents/:id</li>
+<li>query (dict, default={}): Query params in key-value pairs</li>
+<li>headers (dict, default={}): Key-value pairs of headers</li>
+<li>body (dict, default={}): Body for POST request</li>
+<li>base_url (str, default=None): Host, including scheme and port (if different from creds file)</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Object containing the response from Onshape</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-onshapepy.part">
+<span id="onshapepy-part-module"></span><h2>onshapepy.part module<a class="headerlink" href="#module-onshapepy.part" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="part">
+<h3>part<a class="headerlink" href="#part" title="Permalink to this headline">¶</a></h3>
+<p>OnShape part that maps to a part studio</p>
+<dl class="class">
+<dt id="onshapepy.part.Part">
+<em class="property">class </em><code class="descclassname">onshapepy.part.</code><code class="descname">Part</code><span class="sig-paren">(</span><em>did</em>, <em>vid</em>, <em>eid</em>, <em>params={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/part.html#Part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.part.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>a part is used to configure a part studio. This reflects a part at a specific OnShape version. Anything that
+updates the part will then create a new instance of part to be used.</p>
+<dl class="method">
+<dt id="onshapepy.part.Part.update_configuration">
+<code class="descname">update_configuration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/part.html#Part.update_configuration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.part.Part.update_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current configuration from OnShape and put it into the part’s configuration.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="onshapepy.part.Part.update_server">
+<code class="descname">update_server</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/part.html#Part.update_server"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.part.Part.update_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the current configuration to the server
+:return:
+TODO: when OnShape releases the ability to update a part instance in an assembly with new configuration, write this.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-onshapepy.utils">
+<span id="onshapepy-utils-module"></span><h2>onshapepy.utils module<a class="headerlink" href="#module-onshapepy.utils" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="utils">
+<h3>utils<a class="headerlink" href="#utils" title="Permalink to this headline">¶</a></h3>
+<p>Handy functions for API key sample app</p>
+<dl class="function">
+<dt id="onshapepy.utils.log">
+<code class="descclassname">onshapepy.utils.</code><code class="descname">log</code><span class="sig-paren">(</span><em>msg</em>, <em>level=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/utils.html#log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.utils.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs a message to the console, with optional level paramater</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>msg (str): message to send to console</li>
+<li>level (int): log level; 0 for info, 1 for error (default = 0)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-onshapepy">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-onshapepy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="onshapepy">
+<h3>onshapepy<a class="headerlink" href="#onshapepy" title="Permalink to this headline">¶</a></h3>
+<p>Demonstrates usage of API keys for the Onshape REST API</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ethan Keller.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
