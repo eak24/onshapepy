@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5e20229b50cde31d130865ba63f01fbffdd876ea87155a732f30fa72cb2e8a5e"
+            "sha256": "b765327ead175550263ff4b85e2d587a7ab271075af547018003b686a53b94b3"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -15,7 +15,8 @@
             }
         ]
     },
-    "default": {
+    "default": {},
+    "develop": {
         "alabaster": {
             "hashes": [
                 "sha256:674bb3bab080f598371f4443c5008cbfeb1a5e622dd312395d2d82af2c54c456",
@@ -219,6 +220,7 @@
                 "sha256:63b52e3c866428a224f97cab011de738c36aec0185aa91cfacd418b5d58911d1",
                 "sha256:ec22d826a36ed72a7358ff3fe56cbd4ba69dd7a6718ffd450ff0e9df7a47ce6a"
             ],
+            "index": "pypi",
             "version": "==2.19.1"
         },
         "six": {
@@ -266,6 +268,5 @@
             "markers": "python_version < '4' and python_version != '3.3.*' and python_version != '3.0.*' and python_version >= '2.6' and python_version != '3.1.*' and python_version != '3.2.*'",
             "version": "==1.23"
         }
-    },
-    "develop": {}
+    }
 }
