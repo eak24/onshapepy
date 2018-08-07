@@ -15,11 +15,10 @@ install:
   - pipenv install --dev --verbose
   - gem install html-proofer
 script:
-  - pipenv shell
-  - pytest --cov=./
+  - pipenv run pytest --cov=./
   - cd docs # build the docs... should be moved to before_deploy?
-  - make html
-  - make doctest
+  - pipenv run make html
+  - pipenv run make doctest
   - htmlproofer _build/html --allow_hash_href --file_ignore "_build/html/search.html"
   - cd ..
 after_success:
