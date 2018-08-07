@@ -12,7 +12,7 @@ addons:
     - libcurl4-openssl-dev # required to avoid SSL errors
 install:
   - pip install pipenv
-  - pipenv install --dev
+  - pipenv install --dev --verbose
   - gem install html-proofer
 script:
   - pipenv run pytest --cov=./
