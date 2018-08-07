@@ -15,7 +15,8 @@ install:
   - pipenv install --dev --verbose
   - gem install html-proofer
 script:
-  - pipenv run pytest --cov=./
+  - pipenv shell
+  - pytest --cov=./
   - cd docs # build the docs... should be moved to before_deploy?
   - make html
   - make doctest
