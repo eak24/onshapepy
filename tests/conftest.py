@@ -13,4 +13,4 @@ def assembly():
 
 @pytest.fixture
 def client():
-    return Client(creds="/Users/ethankeller/git_repos/AguaClara/AIDE/onshapepy/creds.json")
+    return Client()

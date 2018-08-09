@@ -28,7 +28,7 @@ class Client():
         - logging (bool, default=True): Turn logging on or off
     '''
 
-    def __init__(self, stack='https://cad.onshape.com', logging=True, creds='./creds.json'):
+    def __init__(self, stack='https://cad.onshape.com', logging=True, creds=os.path.join(os.path.dirname(__file__), '../../creds.json')):
         '''
         Instantiates a new Onshape client.
 
