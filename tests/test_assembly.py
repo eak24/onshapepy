@@ -1,4 +1,4 @@
-from onshapepy.client import Client
+from onshapepy.core.client import Client
 
 def test_insert(cube, assembly):
 

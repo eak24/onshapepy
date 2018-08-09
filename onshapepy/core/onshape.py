@@ -5,7 +5,7 @@ onshape
 Provides access to the Onshape REST API
 '''
 
-from . import utils
+from onshapepy.core import utils
 
 import os
 import random

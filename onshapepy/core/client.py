@@ -2,10 +2,11 @@
 client
 ======
 
-Convenience functions for working with the Onshape API
+Low-level convenience functions for working with the Onshape API. No custom objects are handled here - only dictionaries.
+Function names should be equivalent to the OnShape REST API names
 '''
 
-from .onshape import Onshape
+from onshapepy.core.onshape import Onshape
 
 import mimetypes
 import random
@@ -38,6 +39,8 @@ class Client():
 
         self._stack = stack
         self._api = Onshape(stack=stack, logging=logging, creds=creds)
+
+
 
     def new_document(self, name='Test Document', owner_type=0, public=False):
         '''
@@ -218,9 +221,9 @@ class Client():
 
 # Below are functions added for AguaClara
 
-    def insert_configured_part(self, assembly_uri, part_uri, configuration):
+    def create_assembly_instance(self, assembly_uri, part_uri, configuration):
         '''
-        Insert a configurable part into an assembly
+        Insert a configurable part into an assembly.
 
         Args:
             - assembly (dict): eid, wid, and did of the assembly into which will be inserted

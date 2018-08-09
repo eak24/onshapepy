@@ -5,26 +5,26 @@ part
 OnShape part that maps to a part studio
 '''
 
-from onshapepy.client import Client
+from onshapepy.core.client import Client
 import json
+from onshapepy.uri import Uri
 
 class Part():
-    """a part is used to configure a part studio. This reflects a part at a specific OnShape version. Anything that
+    """A part is used to configure a part studio. This reflects a part at a specific OnShape version. Anything that
     updates the part will then create a new instance of part to be used.
+
+
     """
 
-    def __init__(self, did, vid, eid, params={}):
+    def __init__(self, url, params={}):
         """
         Args:
-            - did (str): document id
-            - vid (str): the version id
-            - eid (str): element id
+            - url (str): the url of the Part Studio
             - params (dict, opt): dict of parameter objects. These are objects that return valid parameter settings
                 when encoded as a string.
         """
-        self.uri = {"did": did, "vid": vid, "eid": eid}
+        self.uri = Uri(url)
         self.params = params
-        self.client = Client()
 
 
     def update_server(self):
@@ -34,11 +34,11 @@ class Part():
         """
         pass
 
-    def update_configuration(self):
+    def update_configuration(self, client):
         """Get the current configuration from OnShape and put it into the part's configuration.
         :return:
         """
-        res = self.client.get_configuration(self.uri)
+        res = client.get_configuration(self.uri.as_dict())
         res_configuration = json.loads(res.content.decode("utf-8"))["currentConfiguration"]
         new_configuration = {}
 

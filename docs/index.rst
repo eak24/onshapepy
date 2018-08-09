@@ -52,6 +52,35 @@ Copy a document and adjust cube parameters from python!
    # Insert into the assembly
    my_pyramid.insert(my_cube, c)
 
+Make Reusable Python-driven Parts:
+-----------------------------------
+
+Make a block that can be used multiple times:
+
+.. code-block:: Python
+
+   import onshapepy
+   from onshapepy import Part
+   from onshapepy import Client
+
+   class Cube():
+
+      def __init__(self):
+         self.onshape = Part("de0b979bd2526029daafe060","8043876c6f38336511d43098","7a6d9c6a8583cdf983aee11e")
+
+   # load the API key
+   c = Client()
+
+   my_pyramid = Assembly("8ec353ba00f37f447b5a61f5", "04c36c786829759832bd3d1a", "6f1f9c485ff1e639f4db63c0")
+
+   # set various parameters
+   my_cube.params["h"]["value"] = 5 * 20
+   my_cube.params["h"]["units"] = "inch"
+
+   # Insert into the assembly
+   my_pyramid.insert(my_cube, c)
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

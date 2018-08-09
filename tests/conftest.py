@@ -1,11 +1,16 @@
 import pytest
 from onshapepy.part import Part
 from onshapepy.assembly import Assembly
+from onshapepy.core.client import Client
 
 @pytest.fixture
 def cube():
-    return Part("2d47b6abec9d1de1d2538372", "f2d396ba0762dc1f1dab3de1", "0639ea3c439aa0947744d29a")
+    return Part("https://cad.onshape.com/documents/2d47b6abec9d1de1d2538372/v/f2d396ba0762dc1f1dab3de1/e/0639ea3c439aa0947744d29a")
 
 @pytest.fixture
 def assembly():
- return Assembly("8ec353ba00f37f447b5a61f5", "04c36c786829759832bd3d1a", "1a1dbfb527f96cc00c05e2ed")
+ return Assembly("https://cad.onshape.com/documents/8ec353ba00f37f447b5a61f5/w/04c36c786829759832bd3d1a/e/6f1f9c485ff1e639f4db63c0")
+
+@pytest.fixture
+def client():
+    return Client(creds="/Users/ethankeller/git_repos/AguaClara/AIDE/onshapepy/creds.json")

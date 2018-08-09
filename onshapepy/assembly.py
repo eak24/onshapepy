@@ -2,12 +2,36 @@
 
 """
 
+from onshapepy.uri import Uri
+
+
 class Assembly:
 
 
-    def __init__(self, did, wid, eid):
-        self.uri = {"did": did, "wid": wid, "eid": eid}
+    def __init__(self, url):
+        """ Connect to an assembly that points to the assembly specified with did, wid and eid.
+
+        Parameters
+        ----------
+        url:
+            The url of the onshape item
+        """
+        self.uri = Uri(url)
 
 
     def insert(self, part, client):
-        client.insert_configured_part(self.uri, part.uri, {n: str(v["value"]) + str(v["units"]) for n,v in part.params.items()})
+        """ Insert a part into this assembly.
+
+        Parameters
+        ----------
+        part
+            A Part instance that will be inserted.
+        client
+            A Client instance that does the inserting.
+
+        Returns
+        -------
+        Response from the server
+
+        """
+        return client.create_assembly_instance(self.uri.as_dict(), part.uri.as_dict(), {n: str(v["value"]) + str(v["units"]) for n, v in part.params.items()})

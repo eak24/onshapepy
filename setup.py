@@ -8,9 +8,9 @@ except ImportError:
 config = {
     'name': 'onshapepy',
     'version': '0.0.3',
-    'description': 'Sample package to demonstrate using Onshape API keys',
+    'description': 'Drive part configurations from Python.',
     'long_description': open('README.md').read(),
-    'author': 'Ty-Lucas Kelley',
+    'author': 'Ty-Lucas Kelley, Ethan Keller',
     'url': 'https://github.com/onshapepy/onshapepy/tree/master/python',
     'license': open('LICENSE').read(),
     'packages': [
