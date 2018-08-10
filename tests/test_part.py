@@ -14,10 +14,8 @@ def test_get_part_params(cube):
 
 
 def test_set_part_params(cube):
-    cube.config.post_params({'h': 200*u.mm})
-    cube.params = cube.config.get_params()
+    cube.config.update({'h': 200 * u.mm})
     assert 200*u.mm == cube.params['h']
     #reset to original
-    cube.config.post_params({'h': 100 * u.mm})
-    cube.params = cube.config.get_params()
+    cube.config.update({'h': 100 * u.mm})
     assert 100 * u.mm == cube.params['h']

@@ -45,7 +45,7 @@ Copy a document and adjust cube parameters from python!
    my_pyramid = Assembly(did, wid, eid)
 
 
-   # set various parameters
+   # update various parameters
    my_cube.params["h"]["value"] = 5 * 20
    my_cube.params["h"]["units"] = "inch"
 
@@ -73,7 +73,7 @@ Make a block that can be used multiple times:
 
    my_pyramid = Assembly("8ec353ba00f37f447b5a61f5", "04c36c786829759832bd3d1a", "6f1f9c485ff1e639f4db63c0")
 
-   # set various parameters
+   # update various parameters
    my_cube.params["h"]["value"] = 5 * 20
    my_cube.params["h"]["units"] = "inch"
 
