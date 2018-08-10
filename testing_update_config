@@ -1,184 +1,255 @@
-{"configurationParameters" : [ {
-    "type" : 1826,
-    "typeName" : "BTMConfigurationParameterQuantity",
-    "message" : {
-      "quantityType" : "LENGTH",
-      "rangeAndDefault" : {
-        "type" : 181,
-        "typeName" : "BTQuantityRange",
-        "message" : {
-          "units" : "millimeter",
-          "minValue" : 0.0,
-          "maxValue" : 100000.0,
-          "defaultValue" : 1.0,
-          "location" : {
-            "type" : 226,
-            "typeName" : "BTLocationInfo",
-            "message" : {
-              "document" : "",
-              "version" : "",
-              "topLevel" : "",
-              "parseNodeId" : "",
-              "character" : 0,
-              "line" : 0,
-              "column" : 0,
-              "endCharacter" : 0,
-              "endLine" : 0,
-              "endColumn" : 0,
-              "languageVersion" : 0,
-              "moduleIds" : {
-                "type" : 1897,
-                "typeName" : "BTDocumentVersionElementIds",
-                "message" : {
-                  "documentId" : "",
-                  "versionId" : "",
-                  "elementId" : ""
-                }
-              },
-              "elementMicroversion" : "",
-              "nodeId" : "Y28ck0xDI8S81xvw"
+{
+  "sourceMicroversion": "3a1e3e96bd94e89c3cfb7641",
+  "rejectMicroversionSkew": false,
+  "currentConfiguration": [
+    {
+      "type": 147,
+      "typeName": "BTMParameterQuantity",
+      "message": {
+        "isInteger": false,
+        "units": "millimeter",
+        "value": "0.0 millimeter",
+        "expression": "100 mm",
+        "hasUserCode": false,
+        "nodeId": "M/gnk0q0arycdfHm1",
+        "parameterId": "L"
+      }
+    },
+    {
+      "type": 147,
+      "typeName": "BTMParameterQuantity",
+      "message": {
+        "isInteger": false,
+        "units": "millimeter",
+        "value": "200 millimeter",
+        "expression": "100 mm",
+        "hasUserCode": false,
+        "nodeId": "MBcEojC8Nlma5DrDH",
+        "parameterId": "h"
+      }
+    },
+    {
+      "type": 147,
+      "typeName": "BTMParameterQuantity",
+      "message": {
+        "isInteger": false,
+        "units": "millimeter",
+        "value": "0.0 millimeter",
+        "expression": "100 mm",
+        "hasUserCode": false,
+        "nodeId": "M1puCpsV7BRAToOC3",
+        "parameterId": "w"
+      }
+    },
+    {
+      "type": 144,
+      "typeName": "BTMParameterBoolean",
+      "message": {
+        "nodeId": "MwowBdjOhMWWqOxeN",
+        "parameterId": "has_fillet",
+        "hasUserCode": false,
+        "value": "False"
+      }
+    },
+    {
+      "type": 145,
+      "typeName": "BTMParameterEnum",
+      "message": {
+        "hasUserCode": false,
+        "value": "Default",
+        "parameterId": "List_FU9GkFWwTQUGur",
+        "nodeId": "MnHK2pKfXGuVuVWxi",
+        "namespace": "",
+        "enumName": "List_FU9GkFWwTQUGur_conf"
+      }
+    }
+  ],
+  "serializationVersion": "1.1.15",
+  "libraryVersion": 877,
+  "microversionSkew": false,
+  "configurationParameters": [
+    {
+      "type": 1826,
+      "typeName": "BTMConfigurationParameterQuantity",
+      "message": {
+        "quantityType": "LENGTH",
+        "hasUserCode": false,
+        "parameterName": "L",
+        "rangeAndDefault": {
+          "type": 181,
+          "typeName": "BTQuantityRange",
+          "message": {
+            "minValue": 0.0,
+            "units": "millimeter",
+            "location": {
+              "type": 226,
+              "typeName": "BTLocationInfo",
+              "message": {
+                "line": 0,
+                "parseNodeId": "",
+                "version": "",
+                "nodeId": "+O8XmgzcMrylBV73",
+                "moduleIds": {
+                  "type": 1897,
+                  "typeName": "BTDocumentVersionElementIds",
+                  "message": {
+                    "versionId": "",
+                    "elementId": "",
+                    "documentId": ""
+                  }
+                },
+                "character": 0,
+                "elementMicroversion": "",
+                "topLevel": "",
+                "endLine": 0,
+                "endColumn": 0,
+                "column": 0,
+                "document": "",
+                "endCharacter": 0,
+                "languageVersion": 0
+              }
+            },
+            "maxValue": 100000.0,
+            "defaultValue": 1.0
+          }
+        },
+        "nodeId": "Mti50OwzjZJedQEWR",
+        "parameterId": "L"
+      }
+    },
+    {
+      "type": 1826,
+      "typeName": "BTMConfigurationParameterQuantity",
+      "message": {
+        "quantityType": "LENGTH",
+        "hasUserCode": false,
+        "parameterName": "h",
+        "rangeAndDefault": {
+          "type": 181,
+          "typeName": "BTQuantityRange",
+          "message": {
+            "minValue": 0.0,
+            "units": "millimeter",
+            "location": {
+              "type": 226,
+              "typeName": "BTLocationInfo",
+              "message": {
+                "line": 0,
+                "parseNodeId": "",
+                "version": "",
+                "nodeId": "g0vVtrKfWJJ2K0TT",
+                "moduleIds": {
+                  "type": 1897,
+                  "typeName": "BTDocumentVersionElementIds",
+                  "message": {
+                    "versionId": "",
+                    "elementId": "",
+                    "documentId": ""
+                  }
+                },
+                "character": 0,
+                "elementMicroversion": "",
+                "topLevel": "",
+                "endLine": 0,
+                "endColumn": 0,
+                "column": 0,
+                "document": "",
+                "endCharacter": 0,
+                "languageVersion": 0
+              }
+            },
+            "maxValue": 100000.0,
+            "defaultValue": 1.0
+          }
+        },
+        "nodeId": "M9a+qXqZMCdNmyRsh",
+        "parameterId": "h"
+      }
+    },
+    {
+      "type": 1826,
+      "typeName": "BTMConfigurationParameterQuantity",
+      "message": {
+        "quantityType": "LENGTH",
+        "hasUserCode": false,
+        "parameterName": "w",
+        "rangeAndDefault": {
+          "type": 181,
+          "typeName": "BTQuantityRange",
+          "message": {
+            "minValue": 0.0,
+            "units": "millimeter",
+            "location": {
+              "type": 226,
+              "typeName": "BTLocationInfo",
+              "message": {
+                "line": 0,
+                "parseNodeId": "",
+                "version": "",
+                "nodeId": "m27nJ9d4K59oniUe",
+                "moduleIds": {
+                  "type": 1897,
+                  "typeName": "BTDocumentVersionElementIds",
+                  "message": {
+                    "versionId": "",
+                    "elementId": "",
+                    "documentId": ""
+                  }
+                },
+                "character": 0,
+                "elementMicroversion": "",
+                "topLevel": "",
+                "endLine": 0,
+                "endColumn": 0,
+                "column": 0,
+                "document": "",
+                "endCharacter": 0,
+                "languageVersion": 0
+              }
+            },
+            "maxValue": 100000.0,
+            "defaultValue": 1.0
+          }
+        },
+        "nodeId": "MG0wLfSz8IyG5EbVp",
+        "parameterId": "w"
+      }
+    },
+    {
+      "type": 2550,
+      "typeName": "BTMConfigurationParameterBoolean",
+      "message": {
+        "hasUserCode": false,
+        "nodeId": "MeWEaa9Pey+udRHSd",
+        "parameterId": "has_fillet",
+        "defaultValue": true,
+        "parameterName": "has_fillet"
+      }
+    },
+    {
+      "type": 105,
+      "typeName": "BTMConfigurationParameterEnum",
+      "message": {
+        "nodeId": "MW2hxuef7HRpYYjVD",
+        "hasUserCode": false,
+        "parameterName": "fillet_type",
+        "namespace": "",
+        "options": [
+          {
+            "type": 592,
+            "typeName": "BTMEnumOption",
+            "message": {
+              "optionName": "Default",
+              "nodeId": "MUaP+s0HbisPdnnPi",
+              "hasUserCode": false,
+              "option": "Default"
             }
           }
-        }
-      },
-      "parameterId" : "w",
-      "parameterName" : "w",
-      "hasUserCode" : false,
-      "nodeId" : "MfmK5kJk33hxC9sxf"
+        ],
+        "parameterId": "List_FU9GkFWwTQUGur",
+        "enumName": "List_FU9GkFWwTQUGur_conf",
+        "defaultValue": "Default"
+      }
     }
-  }, {
-    "type" : 1826,
-    "typeName" : "BTMConfigurationParameterQuantity",
-    "message" : {
-      "quantityType" : "LENGTH",
-      "rangeAndDefault" : {
-        "type" : 181,
-        "typeName" : "BTQuantityRange",
-        "message" : {
-          "units" : "millimeter",
-          "minValue" : 0.0,
-          "maxValue" : 100000.0,
-          "defaultValue" : 1.0,
-          "location" : {
-            "type" : 226,
-            "typeName" : "BTLocationInfo",
-            "message" : {
-              "document" : "",
-              "version" : "",
-              "topLevel" : "",
-              "parseNodeId" : "",
-              "character" : 0,
-              "line" : 0,
-              "column" : 0,
-              "endCharacter" : 0,
-              "endLine" : 0,
-              "endColumn" : 0,
-              "languageVersion" : 0,
-              "moduleIds" : {
-                "type" : 1897,
-                "typeName" : "BTDocumentVersionElementIds",
-                "message" : {
-                  "documentId" : "",
-                  "versionId" : "",
-                  "elementId" : ""
-                }
-              },
-              "elementMicroversion" : "",
-              "nodeId" : "/emYq3Pj6Z2+QQ+Y"
-            }
-          }
-        }
-      },
-      "parameterId" : "h",
-      "parameterName" : "h",
-      "hasUserCode" : false,
-      "nodeId" : "MScthEk4Np+x/0xu7"
-    }
-  }, {
-    "type" : 1826,
-    "typeName" : "BTMConfigurationParameterQuantity",
-    "message" : {
-      "quantityType" : "LENGTH",
-      "rangeAndDefault" : {
-        "type" : 181,
-        "typeName" : "BTQuantityRange",
-        "message" : {
-          "units" : "millimeter",
-          "minValue" : 0.0,
-          "maxValue" : 100000.0,
-          "defaultValue" : 1.0,
-          "location" : {
-            "type" : 226,
-            "typeName" : "BTLocationInfo",
-            "message" : {
-              "document" : "",
-              "version" : "",
-              "topLevel" : "",
-              "parseNodeId" : "",
-              "character" : 0,
-              "line" : 0,
-              "column" : 0,
-              "endCharacter" : 0,
-              "endLine" : 0,
-              "endColumn" : 0,
-              "languageVersion" : 0,
-              "moduleIds" : {
-                "type" : 1897,
-                "typeName" : "BTDocumentVersionElementIds",
-                "message" : {
-                  "documentId" : "",
-                  "versionId" : "",
-                  "elementId" : ""
-                }
-              },
-              "elementMicroversion" : "",
-              "nodeId" : "Mxn3AsX4++4nunxi"
-            }
-          }
-        }
-      },
-      "parameterId" : "L",
-      "parameterName" : "L",
-      "hasUserCode" : false,
-      "nodeId" : "M9dSiWo9xeOFk/sax"
-    }
-  } ],
-  "currentConfiguration" : [ {
-    "type" : 147,
-    "typeName" : "BTMParameterQuantity",
-    "message" : {
-      "units" : "millimeter",
-      "value" : 400.0,
-      "expression" : "400 mm",
-      "isInteger" : false,
-      "parameterId" : "w",
-      "hasUserCode" : false,
-      "nodeId" : "MltLqfVZQ5M/j4lRC"
-    }
-  }, {
-    "type" : 147,
-    "typeName" : "BTMParameterQuantity",
-    "message" : {
-      "units" : "millimeter",
-      "value" : 3.0,
-      "expression" : "3 mm",
-      "isInteger" : false,
-      "parameterId" : "h",
-      "hasUserCode" : false,
-      "nodeId" : "MDBR4UBvHKXQBqKDY"
-    }
-  }, {
-    "type" : 147,
-    "typeName" : "BTMParameterQuantity",
-    "message" : {
-      "units" : "millimeter",
-      "value" : 2.0,
-      "expression" : "2 mm",
-      "isInteger" : false,
-      "parameterId" : "L",
-      "hasUserCode" : false,
-      "nodeId" : "MLzIYsr6hnri3Q2X0"
-    }
-  } ],
-  "serializationVersion" : "1.1.15"
+  ]
 }

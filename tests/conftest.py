@@ -5,7 +5,7 @@ from onshapepy.core.client import Client
 
 @pytest.fixture
 def cube():
-    return Part("https://cad.onshape.com/documents/2d47b6abec9d1de1d2538372/v/f2d396ba0762dc1f1dab3de1/e/0639ea3c439aa0947744d29a")
+    return Part("https://cad.onshape.com/documents/2d47b6abec9d1de1d2538372/w/39e483948767f72c97d2792f/e/0639ea3c439aa0947744d29a")
 
 @pytest.fixture
 def assembly():

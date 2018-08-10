@@ -297,30 +297,23 @@ class Client():
 
     ############### Part Studio ###########################
 
-
-    def update_configuration(self, did, wid, eid, currentConfiguration):
+    def update_configuration(self, did, wid, eid, payload):
         '''
-        Encode parameters as a URL-ready string
+        Update the configuration specified in the payload
 
         Args:
             - did (str): Document ID
             - eid (str): Element ID
-            - parameters (dict): key-value pairs of the parameters to be encoded
+            - payload (json): the request body
         Returns:
             - configuration (str): the url-ready configuration string.
         '''
 
-        payload = {
-          "currentConfiguration": currentConfiguration,
-          "serializationVersion": "String",
-          "sourceMicroversion": "String",
-          "rejectMicroversionSkew": "Boolean"
-        }
         req_headers = {
             'Accept': 'application/vnd.onshape.v1+json',
             'Content-Type': 'application/json'
         }
 
-        res = self._api.request('post', '/api/partstudios/d/' + did + '/v/' + wid + '/e/' + eid + '/configuration', body=payload, headers=req_headers)
+        res = self._api.request('post', '/api/partstudios/d/' + did + '/w/' + wid + '/e/' + eid + '/configuration', body=payload, headers=req_headers)
 
-        return json.loads(res.content.decode("utf-8"))["encodedId"]
+        return res
