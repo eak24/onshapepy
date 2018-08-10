@@ -16,6 +16,8 @@ Sphinx = "*"
 sphinx_rtd_theme = "==0.4.0"
 onshapepy = {editable = true, path = "."}
 pytest-runner = "*"
+jupyter = "*"
+ipykernel = "*"
 
 [requires]
 python_version = "3.5"
