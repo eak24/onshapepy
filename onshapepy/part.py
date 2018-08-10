@@ -41,7 +41,8 @@ class Part():
     def params(self):
         return self.config.params
 
-    def set(self, dict):
+    @params.setter
+    def params(self, dict):
         """Set configuration variables for an OnShape part."""
         self.config.update(dict)
 
@@ -67,12 +68,16 @@ class Config:
         if not params or not self.res:
             self.get_params()
             return
+        d = self.payload
         for k, v in params.items():
-            d = self.payload
-            try:
-                d["currentConfiguration"][self.parameter_map[k]]["message"]["expression"] = str(v)
-            except KeyError:
-                d["currentConfiguration"][self.parameter_map[k]]["message"]["value"] = str(v)
+            m = d["currentConfiguration"][self.parameter_map[k]]["message"]
+            if isinstance(v, bool) or isinstance(v, str):
+                m["value"] = v
+            else:
+                try:
+                    m["expression"] = str(v)
+                except KeyError:
+                    m["value"] = str(v)
 
         res = self.client.update_configuration(self.uri.did, self.uri.wvm, self.uri.eid, json.dumps(d))
 
@@ -100,7 +105,8 @@ class Config:
         parameter_map = {}
         for i, p in enumerate(payload["currentConfiguration"]):
             type_name = p["typeName"]
-            name = payload["configurationParameters"][i]["message"]["parameterName"]
+            cp = payload["configurationParameters"][i]["message"]
+            name = cp["parameterName"]
             if type_name == "BTMParameterQuantity":
                 try:
                     v = q(p["message"]["expression"])
@@ -109,7 +115,9 @@ class Config:
             elif type_name == "BTMParameterBoolean":
                 v = p["message"]["value"]
             elif type_name == "BTMParameterEnum":
-                v = p["message"]["value"]
+                enum = p["message"]["value"]
+                enum_map = {d['message']['option']: i for i, d in enumerate(cp['options'])}
+                v = cp['options'][enum_map[enum]]['message']['optionName']
             d[name] = v
         return d
 

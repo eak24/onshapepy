@@ -8,7 +8,7 @@ Welcome to onshapepy's documentation!
 
 This is an unofficial fork of the `OnShape APIkey application. <https://github.com/onshape-public/apikey>`_
 
-This is a connector between python and OnShape. It is used to send data to configurable partStudios. Through this connector, you can control FeatureScript features, import configured parts, download configurations all with Python.
+This is a connector between python and OnShape. It is used to send data to configurable partStudios. Through this connector, you can control FeatureScript features, import configured parts, and download configurations all with Python.
 
 At AguaClara, we use this connector to upload parameters of our hydraulic design that are calculated in Python.
 
@@ -33,24 +33,15 @@ Copy a document and adjust cube parameters from python!
 
 .. code-block:: Python
 
-   import onshape
    from onshape import Part
-   from onshape import Client
 
-   # load the API key
-   c = Client(creds = "file path to creds")
+   # load the API key - insert the file path to the API key if not in root.
+   c = Client()
 
    # load the client for this part
-   my_cube = Part("cube","cube","cube")
-   my_pyramid = Assembly(did, wid, eid)
+   my_cube = Part("https://cad.onshape.com/documents/2d47b6abec9d1de1d2538372/w/39e483948767f72c97d2792f/e/0639ea3c439aa0947744d29a")
+   my_cube.
 
-
-   # update various parameters
-   my_cube.params["h"]["value"] = 5 * 20
-   my_cube.params["h"]["units"] = "inch"
-
-   # Insert into the assembly
-   my_pyramid.insert(my_cube, c)
 
 Make Reusable Python-driven Parts:
 -----------------------------------
