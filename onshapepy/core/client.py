@@ -241,13 +241,13 @@ class Client():
           # "partId": "String",
           # "featureId": "String",
           # "microversionId": "String",
-          "versionId": part_uri["vid"],
+          "versionId": part_uri["wvm"],
           # "microversionId": "String",
           "isAssembly": False,
           "isWholePartStudio": True,
           "configuration": self.encode_configuration(part_uri["did"], part_uri["eid"], configuration)
         }
-        return self._api.request('post', '/api/assemblies/d/' + assembly_uri["did"] + '/w/' + assembly_uri["wid"] + '/e/' + assembly_uri["eid"] + '/instances', body=payload)
+        return self._api.request('post', '/api/assemblies/d/' + assembly_uri["did"] + '/w/' + assembly_uri["wvm"] + '/e/' + assembly_uri["eid"] + '/instances', body=payload)
 
     def encode_configuration(self, did, eid, parameters):
         '''
@@ -292,4 +292,35 @@ class Client():
             'Accept': 'application/vnd.onshape.v1+json',
             'Content-Type': 'application/json'
         }
-        return self._api.request('get', '/api/partstudios/d/' + uri["did"] + '/v/' + uri["vid"] + '/e/' + uri["eid"] + '/configuration', headers=req_headers)
+        return self._api.request('get', '/api/partstudios/d/' + uri["did"] + '/' + uri["wvm_type"] + '/' + uri["wvm"] + '/e/' + uri["eid"] + '/configuration', headers=req_headers)
+
+
+    ############### Part Studio ###########################
+
+
+    def update_configuration(self, did, wid, eid, currentConfiguration):
+        '''
+        Encode parameters as a URL-ready string
+
+        Args:
+            - did (str): Document ID
+            - eid (str): Element ID
+            - parameters (dict): key-value pairs of the parameters to be encoded
+        Returns:
+            - configuration (str): the url-ready configuration string.
+        '''
+
+        payload = {
+          "currentConfiguration": currentConfiguration,
+          "serializationVersion": "String",
+          "sourceMicroversion": "String",
+          "rejectMicroversionSkew": "Boolean"
+        }
+        req_headers = {
+            'Accept': 'application/vnd.onshape.v1+json',
+            'Content-Type': 'application/json'
+        }
+
+        res = self._api.request('post', '/api/partstudios/d/' + did + '/v/' + wid + '/e/' + eid + '/configuration', body=payload, headers=req_headers)
+
+        return json.loads(res.content.decode("utf-8"))["encodedId"]

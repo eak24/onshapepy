@@ -1,0 +1,184 @@
+{"configurationParameters" : [ {
+    "type" : 1826,
+    "typeName" : "BTMConfigurationParameterQuantity",
+    "message" : {
+      "quantityType" : "LENGTH",
+      "rangeAndDefault" : {
+        "type" : 181,
+        "typeName" : "BTQuantityRange",
+        "message" : {
+          "units" : "millimeter",
+          "minValue" : 0.0,
+          "maxValue" : 100000.0,
+          "defaultValue" : 1.0,
+          "location" : {
+            "type" : 226,
+            "typeName" : "BTLocationInfo",
+            "message" : {
+              "document" : "",
+              "version" : "",
+              "topLevel" : "",
+              "parseNodeId" : "",
+              "character" : 0,
+              "line" : 0,
+              "column" : 0,
+              "endCharacter" : 0,
+              "endLine" : 0,
+              "endColumn" : 0,
+              "languageVersion" : 0,
+              "moduleIds" : {
+                "type" : 1897,
+                "typeName" : "BTDocumentVersionElementIds",
+                "message" : {
+                  "documentId" : "",
+                  "versionId" : "",
+                  "elementId" : ""
+                }
+              },
+              "elementMicroversion" : "",
+              "nodeId" : "Y28ck0xDI8S81xvw"
+            }
+          }
+        }
+      },
+      "parameterId" : "w",
+      "parameterName" : "w",
+      "hasUserCode" : false,
+      "nodeId" : "MfmK5kJk33hxC9sxf"
+    }
+  }, {
+    "type" : 1826,
+    "typeName" : "BTMConfigurationParameterQuantity",
+    "message" : {
+      "quantityType" : "LENGTH",
+      "rangeAndDefault" : {
+        "type" : 181,
+        "typeName" : "BTQuantityRange",
+        "message" : {
+          "units" : "millimeter",
+          "minValue" : 0.0,
+          "maxValue" : 100000.0,
+          "defaultValue" : 1.0,
+          "location" : {
+            "type" : 226,
+            "typeName" : "BTLocationInfo",
+            "message" : {
+              "document" : "",
+              "version" : "",
+              "topLevel" : "",
+              "parseNodeId" : "",
+              "character" : 0,
+              "line" : 0,
+              "column" : 0,
+              "endCharacter" : 0,
+              "endLine" : 0,
+              "endColumn" : 0,
+              "languageVersion" : 0,
+              "moduleIds" : {
+                "type" : 1897,
+                "typeName" : "BTDocumentVersionElementIds",
+                "message" : {
+                  "documentId" : "",
+                  "versionId" : "",
+                  "elementId" : ""
+                }
+              },
+              "elementMicroversion" : "",
+              "nodeId" : "/emYq3Pj6Z2+QQ+Y"
+            }
+          }
+        }
+      },
+      "parameterId" : "h",
+      "parameterName" : "h",
+      "hasUserCode" : false,
+      "nodeId" : "MScthEk4Np+x/0xu7"
+    }
+  }, {
+    "type" : 1826,
+    "typeName" : "BTMConfigurationParameterQuantity",
+    "message" : {
+      "quantityType" : "LENGTH",
+      "rangeAndDefault" : {
+        "type" : 181,
+        "typeName" : "BTQuantityRange",
+        "message" : {
+          "units" : "millimeter",
+          "minValue" : 0.0,
+          "maxValue" : 100000.0,
+          "defaultValue" : 1.0,
+          "location" : {
+            "type" : 226,
+            "typeName" : "BTLocationInfo",
+            "message" : {
+              "document" : "",
+              "version" : "",
+              "topLevel" : "",
+              "parseNodeId" : "",
+              "character" : 0,
+              "line" : 0,
+              "column" : 0,
+              "endCharacter" : 0,
+              "endLine" : 0,
+              "endColumn" : 0,
+              "languageVersion" : 0,
+              "moduleIds" : {
+                "type" : 1897,
+                "typeName" : "BTDocumentVersionElementIds",
+                "message" : {
+                  "documentId" : "",
+                  "versionId" : "",
+                  "elementId" : ""
+                }
+              },
+              "elementMicroversion" : "",
+              "nodeId" : "Mxn3AsX4++4nunxi"
+            }
+          }
+        }
+      },
+      "parameterId" : "L",
+      "parameterName" : "L",
+      "hasUserCode" : false,
+      "nodeId" : "M9dSiWo9xeOFk/sax"
+    }
+  } ],
+  "currentConfiguration" : [ {
+    "type" : 147,
+    "typeName" : "BTMParameterQuantity",
+    "message" : {
+      "units" : "millimeter",
+      "value" : 400.0,
+      "expression" : "400 mm",
+      "isInteger" : false,
+      "parameterId" : "w",
+      "hasUserCode" : false,
+      "nodeId" : "MltLqfVZQ5M/j4lRC"
+    }
+  }, {
+    "type" : 147,
+    "typeName" : "BTMParameterQuantity",
+    "message" : {
+      "units" : "millimeter",
+      "value" : 3.0,
+      "expression" : "3 mm",
+      "isInteger" : false,
+      "parameterId" : "h",
+      "hasUserCode" : false,
+      "nodeId" : "MDBR4UBvHKXQBqKDY"
+    }
+  }, {
+    "type" : 147,
+    "typeName" : "BTMParameterQuantity",
+    "message" : {
+      "units" : "millimeter",
+      "value" : 2.0,
+      "expression" : "2 mm",
+      "isInteger" : false,
+      "parameterId" : "L",
+      "hasUserCode" : false,
+      "nodeId" : "MLzIYsr6hnri3Q2X0"
+    }
+  } ],
+  "serializationVersion" : "1.1.15"
+}

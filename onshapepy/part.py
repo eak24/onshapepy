@@ -9,6 +9,7 @@ from onshapepy.core.client import Client
 import json
 from onshapepy.uri import Uri
 
+
 class Part():
     """A part is used to configure a part studio. This reflects a part at a specific OnShape version. Anything that
     updates the part will then create a new instance of part to be used.
@@ -16,7 +17,7 @@ class Part():
 
     """
 
-    def __init__(self, url, params={}):
+    def __init__(self, url, params=None, client=Client()):
         """
         Args:
             - url (str): the url of the Part Studio
@@ -24,28 +25,49 @@ class Part():
                 when encoded as a string.
         """
         self.uri = Uri(url)
-        self.params = params
+        self.config = Config(url)
+        self.config.set(params)
+        self.client = client
+        self.params = self.config.get_params()
 
 
-    def update_server(self):
-        """Send the current configuration to the server
-        :return:
-        TODO: when OnShape releases the ability to update a part instance in an assembly with new configuration, write this.
-        """
+class Config:
+    """The collection of configuration values. This class simplifies interacting with the configuration REST API"""
+
+    def __init__(self, url, client=Client()):
+        """Holds the configuration state specified by the uri. The most recent server response is held in raw_res. This
+        is used to generate a list of easier to understand and serialize dictionary of config values."""
+        self.uri = Uri(url)
+        self.client = client
+        self.raw = None
+
+    def set(self, params):
+        """Specify the name of a config parameter and its value and set it in the payload."""
         pass
 
-    def update_configuration(self, client):
-        """Get the current configuration from OnShape and put it into the part's configuration.
-        :return:
-        """
-        res = client.get_configuration(self.uri.as_dict())
-        res_configuration = json.loads(res.content.decode("utf-8"))["currentConfiguration"]
-        new_configuration = {}
+    def post_params(self):
+        """Manually push params defined in config to OnShape"""
+        pass
 
-        for p in res_configuration:
-            new_param = {}
-            new_param["value"] = p["message"]["value"]
-            new_param["units"] = p["message"]["units"] if "units" in p["message"] else None
-            new_configuration[p["message"]["parameterId"]] = new_param
+    def get_params(self):
+        """Manually pull params defined in config from OnShape and update local copy"""
+        res = self.client.get_configuration(self.uri.as_dict())
+        self.raw = json.loads(res.content.decode("utf-8"))["currentConfiguration"]
+        d = {}
+        for p in self.raw:
+            if "units" in p["message"]:
+                value = string_to_quantity(p["message"]["value"], p["message"]["units"])
+                name = p["message"]["parameterId"]
+                d[name] = value
+        return d
 
-        self.params.update(new_configuration)
+def string_to_quantity(value, units):
+    """Convert a quantity defined by a value and a units string into a quantity"""
+    import pint
+    u = pint.UnitRegistry()
+    q = u.Quantity
+    return q(value, units)
+
+
+class OutputDims:
+    pass

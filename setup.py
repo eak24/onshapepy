@@ -16,7 +16,7 @@ config = {
     'packages': [
         'onshapepy'
     ],
-    'install_requires': ['requests'],
+    'install_requires': ['requests', 'pint'],
     'classifiers': [
         'Programming Language :: Python',
         'Operating System :: MacOS :: MacOS X',

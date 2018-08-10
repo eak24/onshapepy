@@ -34,4 +34,4 @@ class Assembly:
         Response from the server
 
         """
-        return client.create_assembly_instance(self.uri.as_dict(), part.uri.as_dict(), {n: str(v["value"]) + str(v["units"]) for n, v in part.params.items()})
+        return client.create_assembly_instance(self.uri.as_dict(), part.uri.as_dict(), {n: str(v.magnitude) + str(v.units) for n, v in part.params.items()})
