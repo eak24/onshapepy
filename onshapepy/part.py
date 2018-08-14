@@ -7,6 +7,7 @@ OnShape part that maps to a part studio
 
 from onshapepy.core.client import Client
 from onshapepy.core.context import Context
+from onshapepy.core.utils import parse_quantity
 import json
 from onshapepy.uri import Uri
 import pint
@@ -36,6 +37,13 @@ class Part():
             self.config.update(params)
         else:
             self.config.get_params()
+        self._measurements = Measurements(self)
+
+    @property
+    def measurements(self):
+        self._measurements.update()
+        return self._measurements.measurements
+
 
     @property
     def params(self):
@@ -132,5 +140,35 @@ class Config:
             parameter_map[name] = i
         return parameter_map
 
-class OutputDims:
-    pass
+
+class Measurements:
+    """Result of "output dimensions" as specified with the "Measure" features within the part Studio"""
+
+    def __init__(self, parent):
+        self.res = None
+        self.parent = parent
+
+    def update(self):
+        """ Update all local variable names to match OnShape. """
+        c = Context().client
+        uri = self.parent.uri
+        script = r"""
+        function(context, queries) {
+            return getVariable(context, "measurements");
+        }
+        """
+
+        self.res = c.evaluate_featurescript(uri.as_dict(), script)
+
+    @property
+    def payload(self):
+        return json.loads(self.res.content.decode("utf-8"))
+
+    @property
+    def measurements(self):
+        m_dictionary = {}
+        for m in self.payload["result"]["message"]["value"]:
+            name = m["message"]["key"]['message']['value']
+            q = m["message"]['value']['message']
+            m_dictionary[name] = u(parse_quantity(q))
+        return m_dictionary

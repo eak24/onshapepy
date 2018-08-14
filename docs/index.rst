@@ -75,6 +75,7 @@ Make a block that can be used multiple times:
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   modules.rst
 
 
 

@@ -317,3 +317,29 @@ class Client():
         res = self._api.request('post', '/api/partstudios/d/' + did + '/w/' + wid + '/e/' + eid + '/configuration', body=payload, headers=req_headers)
 
         return res
+
+    def evaluate_featurescript(self, uri, script, queries=[]):
+        """
+
+        Args:
+            uri (dict): Location including did, eid, wvm
+            queries ([dict]):
+            script (str): A FeatureScript function to run.
+
+        Returns:
+            - requests.Response: Onshape response data
+        """
+        req_headers = {
+            'Accept': 'application/vnd.onshape.v1+json',
+            'Content-Type': 'application/json'
+        }
+
+        payload = {
+            'queries': queries,
+            'script': script
+
+        }
+
+        return self._api.request('post',
+                                 '/api/partstudios/d/' + uri["did"] + '/' + uri["wvm_type"] + '/' + uri["wvm"] + '/e/' +
+                                 uri["eid"] + '/featurescript', body=payload, headers=req_headers)

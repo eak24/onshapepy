@@ -15,7 +15,7 @@ onshapepy.assembly module
 onshapepy.client module
 -----------------------
 
-.. automodule:: onshapepy.client
+.. automodule:: onshapepy.core.client
     :members:
     :undoc-members:
     :show-inheritance:
@@ -23,7 +23,7 @@ onshapepy.client module
 onshapepy.onshape module
 ------------------------
 
-.. automodule:: onshapepy.onshape
+.. automodule:: onshapepy.core.onshape
     :members:
     :undoc-members:
     :show-inheritance:
@@ -39,7 +39,7 @@ onshapepy.part module
 onshapepy.utils module
 ----------------------
 
-.. automodule:: onshapepy.utils
+.. automodule:: onshapepy.core.utils
     :members:
     :undoc-members:
     :show-inheritance:

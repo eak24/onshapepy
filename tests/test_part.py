@@ -21,3 +21,6 @@ def test_set_part_params(cube):
     # reset to original
     cube.params = standard
     assert cube.params == standard
+
+def test_get_measurements(cube):
+    assert cube.measurements == {'diagonal': 0.1414213562373095*u.meter}
