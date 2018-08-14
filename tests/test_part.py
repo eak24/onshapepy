@@ -1,4 +1,4 @@
-from onshapepy.part import Config
+from onshapepy.part import Configuration
 import pint
 import pytest
 

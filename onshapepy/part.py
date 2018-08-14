@@ -29,33 +29,33 @@ class Part():
             - params (dict, opt): dict of parameter objects. These are objects that return valid parameter settings
                 when encoded as a string.
         """
-        c=Context()
         self.uri = Uri(url)
-        self.config = Config(self)
+        self._configuration = Configuration(self)
         #post defined params if necessary
         if params:
-            self.config.update(params)
+            self._configuration.update(params)
         else:
-            self.config.get_params()
+            self._configuration.get_params()
         self._measurements = Measurements(self)
+        self._measurements.update()
 
     @property
     def measurements(self):
-        self._measurements.update()
         return self._measurements.measurements
 
 
     @property
     def params(self):
-        return self.config.params
+        return self._configuration.params
 
     @params.setter
     def params(self, dict):
         """Set configuration variables for an OnShape part."""
-        self.config.update(dict)
+        self._configuration.update(dict)
+        self._measurements.update()
 
 
-class Config:
+class Configuration:
     """The collection of configuration values. This class simplifies interacting with the configuration REST API and
     some caching to reduce wait times."""
 
@@ -112,7 +112,6 @@ class Config:
         """
         payload = self.payload
         d = {}
-        parameter_map = {}
         for i, p in enumerate(payload["currentConfiguration"]):
             type_name = p["typeName"]
             cp = payload["configurationParameters"][i]["message"]
