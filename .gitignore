@@ -1,4 +1,4 @@
-creds.json
+.onshapepy_conf.yaml
 *.pyc
 *.idea
 # Byte-compiled / optimized / DLL files
