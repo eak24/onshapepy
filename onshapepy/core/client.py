@@ -13,6 +13,10 @@ import random
 import string
 import os
 import json
+from pathlib import Path
+from ruamel.yaml import YAML
+
+yaml = YAML()
 
 
 class Client():
@@ -28,17 +32,38 @@ class Client():
         - logging (bool, default=True): Turn logging on or off
     '''
 
-    def __init__(self, stack='https://cad.onshape.com', logging=True, creds=os.path.join(os.path.dirname(__file__), '../../creds.json')):
+    def __init__(self, user_conf=yaml.load(Path.home().joinpath('.onshapepy_conf.yaml'))):
         '''
         Instantiates a new Onshape client.
 
         Args:
-            - stack (str, default='https://cad.onshape.com'): Base URL
-            - logging (bool, default=True): Turn logging on or off
+            - conf (dict): a dictionary of configuration options. Default behavior is to load this from a YAML file that
+                is located in user's home directory and name '.onshapepy_conf.yaml'. For options that can be set, look
+                at the documentation section on 'configuration'.
         '''
 
-        self._stack = stack
-        self._api = Onshape(stack=stack, logging=logging, creds=creds)
+        conf = {
+            'stack': 'https://cad.onshape.com',
+            'logging': False,
+            'creds':
+                {
+                     "access_key": None,
+                     "secret_key": None
+                }
+        }
+
+        conf.update(user_conf)
+
+        try:
+            creds = conf['creds']
+
+
+        except:
+            raise AssertionError("Please specify your OnShape acces_key and secret_key within the onshapepy "
+                                 "configuration file, by default located at 'home/.onshapepy_conf.yaml'.")
+
+        self._stack = conf['stack']
+        self._api = Onshape(conf['stack'], conf['creds'], conf['logging'])
 
 
 

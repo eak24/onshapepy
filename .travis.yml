@@ -3,38 +3,38 @@ sudo: false
 python:
 - '3.5'
 before_install:
- - export NOKOGIRI_USE_SYSTEM_LIBRARIES=true
- - openssl aes-256-cbc -K $encrypted_0b30f5022c54_key -iv $encrypted_0b30f5022c54_iv
-  -in creds.json.enc -out creds.json -d
+- openssl aes-256-cbc -K $encrypted_c77138175719_key -iv $encrypted_c77138175719_iv
+  -in .onshapepy_conf.yaml.enc -out ~\/.onshapepy_conf.yaml -d
+- export NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 addons:
   apt:
     packages:
-    - libcurl4-openssl-dev # required to avoid SSL errors
+    - libcurl4-openssl-dev
 install:
-  - pip install pipenv
-  - pipenv install --dev
-  - gem install html-proofer
+- pip install pipenv
+- pipenv install --dev
+- gem install html-proofer
 script:
-  - pipenv run pytest --cov=./
-  - cd docs # build the docs... should be moved to before_deploy?
-  - pipenv run make html
-  - pipenv run make doctest
-  - htmlproofer _build/html --allow_hash_href --file_ignore "_build/html/search.html"
-  - cd ..
+- pipenv run pytest --cov=./
+- cd docs
+- pipenv run make html
+- pipenv run make doctest
+- htmlproofer _build/html --allow_hash_href --file_ignore "_build/html/search.html"
+- cd ..
 after_success:
-  - pipenv run codecov
+- pipenv run codecov
 deploy:
-  - provider: pypi
-    user: "$PYPI_USERNAME"
-    password: "$PYPI_PASSWORD"
-    on:
-      tags: true
-    distributions: sdist
-  - provider: pages # Deploy to to gh-pages
-    skip-cleanup: true
-    github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-    keep-history: true
-    local-dir: docs/_build/html
-    target-branch: gh-pages
-    on:
-      tags: true
+- provider: pypi
+  user: "$PYPI_USERNAME"
+  password: "$PYPI_PASSWORD"
+  on:
+    tags: true
+  distributions: sdist
+- provider: pages
+  skip-cleanup: true
+  github-token: "$GITHUB_TOKEN"
+  keep-history: true
+  local-dir: docs/_build/html
+  target-branch: gh-pages
+  on:
+    tags: true
