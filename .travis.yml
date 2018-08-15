@@ -3,9 +3,8 @@ sudo: false
 python:
 - '3.5'
 before_install:
-- ls
 - openssl aes-256-cbc -K $encrypted_c77138175719_key -iv $encrypted_c77138175719_iv
-  -in .onshapepy_conf.yaml.enc -out ~\/.onshapepy_conf.yaml -d
+  -in $TRAVIS_BUILD_DIR.onshapepy_conf.yaml.enc -out ~\/.onshapepy_conf.yaml -d
 - export NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 addons:
   apt:
