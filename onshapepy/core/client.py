@@ -32,7 +32,7 @@ class Client():
         - logging (bool, default=True): Turn logging on or off
     '''
 
-    def __init__(self, user_conf=yaml.load(Path.home().joinpath('onshapepy_conf.yaml'))):
+    def __init__(self, user_conf=yaml.load(Path.home().joinpath('.onshapepy_conf.yaml'))):
         '''
         Instantiates a new Onshape client.
 
