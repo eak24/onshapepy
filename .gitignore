@@ -1,4 +1,4 @@
-.onshapepy_conf.yaml
+.onshapepy
 *.pyc
 *.idea
 # Byte-compiled / optimized / DLL files

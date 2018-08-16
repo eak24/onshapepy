@@ -19,14 +19,15 @@ sys.path.append(os.path.join(os.path.dirname(__name__), '..'))
 
 # -- Project information -----------------------------------------------------
 
-project = u'onshapepy'
+project = u'OnShapePy'
 copyright = u'2018, Ethan Keller'
 author = u'Ethan Keller'
 
 # The short X.Y version
-version = u''
+import os
+version = os.getenv("TRAVIS_TAG", "EXPERIMENTAL")
 # The full version, including alpha/beta/rc tags
-release = u'0.0.0'
+release = version
 
 
 # -- General configuration ---------------------------------------------------

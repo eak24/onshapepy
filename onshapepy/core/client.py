@@ -32,13 +32,13 @@ class Client():
         - logging (bool, default=True): Turn logging on or off
     '''
 
-    def __init__(self, user_conf=yaml.load(Path.home().joinpath('.onshapepy_conf.yaml'))):
+    def __init__(self, user_conf=yaml.load(Path.home().joinpath('.onshapepy'))):
         '''
         Instantiates a new Onshape client.
 
         Args:
             - conf (dict): a dictionary of configuration options. Default behavior is to load this from a YAML file that
-                is located in user's home directory and name '.onshapepy_conf.yaml'. For options that can be set, look
+                is located in user's home directory and name '.onshapepy'. For options that can be set, look
                 at the documentation section on 'configuration'.
         '''
 
@@ -60,7 +60,7 @@ class Client():
 
         except:
             raise AssertionError("Please specify your OnShape acces_key and secret_key within the onshapepy "
-                                 "configuration file, by default located at 'home/.onshapepy_conf.yaml'.")
+                                 "configuration file, by default located at 'home/.onshapepy'.")
 
         self._stack = conf['stack']
         self._api = Onshape(conf['stack'], conf['creds'], conf['logging'])
