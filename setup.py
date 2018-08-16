@@ -7,7 +7,7 @@ except ImportError:
 
 config = {
     'name': 'onshapepy',
-    'version': '0.0.3',
+    'version': '0.0.4',
     'description': 'Drive part configurations from Python.',
     'long_description': open('README.md').read(),
     'author': 'Ty-Lucas Kelley, Ethan Keller',
