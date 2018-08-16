@@ -1,29 +1,26 @@
-#!/usr/bin/env python
+from setuptools import setup
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
 
-config = {
-    'name': 'onshapepy',
-    'version': '0.0.4',
-    'description': 'Drive part configurations from Python.',
-    'long_description': open('README.md').read(),
-    'author': 'Ty-Lucas Kelley, Ethan Keller',
-    'url': 'https://github.com/onshapepy/onshapepy/tree/master/python',
-    'license': open('LICENSE').read(),
-    'packages': [
+# read the contents of your README file
+from os import path
+this_directory = path.abspath(path.dirname(__file__))
+
+def read(file_name):
+    with open(path.join(this_directory, file_name), encoding='utf-8') as f:
+        return f.read()
+
+
+setup(
+    name= 'onshapepy',
+    version= '0.0.5',
+    description= 'Drive part configurations from Python.',
+    long_description= read("README.md"),
+    author= 'Ethan Keller',
+    url= 'https://github.com/onshapepy/onshapepy/tree/master/python',
+    license= read("LICENSE"),
+    packages= [
         'onshapepy'
     ],
-    'install_requires': ['requests', 'pint'],
-    'classifiers': [
-        'Programming Language :: Python',
-        'Operating System :: MacOS :: MacOS X',
-        'Operating System :: POSIX :: Linux',
-        'Intended Audience :: Developers',
-        'Topic :: Software Development :: Libraries :: Python Modules'
-    ]
-}
+    install_requires= ['requests', 'pint', 'ruamel.yaml'],
+)
 
-setup(**config)
