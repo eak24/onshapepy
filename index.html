@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to onshapepy’s documentation! &mdash; OnShapePy 0.0.7 documentation</title>
+  <title>Welcome to onshapepy’s documentation! &mdash; OnShapePy 0.0.11 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                0.0.7
+                0.0.11
               </div>
             
           
@@ -155,17 +155,27 @@
 scientific libraries to OnShape parts.</p>
 <div class="section" id="quick-demo">
 <h2>Quick demo:<a class="headerlink" href="#quick-demo" title="Permalink to this headline">¶</a></h2>
-<p>Copy a document and adjust cube parameters from python!</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">onshape</span> <span class="kn">import</span> <span class="n">Part</span>
+<iframe width="700" height="460" src="https://www.youtube.com/embed/TkA6F1ZhfWU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><p>See how to connect to a PartStudio and adjust parameters from python!</p>
+<p>Straight to the code:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">onshapepy.play</span> <span class="kn">import</span> <span class="o">*</span>
 
+ <span class="c1"># Put in your access and secret keys</span>
+ <span class="n">configuration</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;creds&#39;</span><span class="p">:{</span><span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="s1">&#39;MY ACCESS KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="s2">&quot;MY SECRET KEY&quot;</span><span class="p">}}</span>
+ <span class="n">Client</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
 
+ <span class="c1"># Put in your partstudio URL. Here&#39;s an example with a cube</span>
+ <span class="n">my_cube</span> <span class="o">=</span> <span class="n">Part</span><span class="p">(</span><span class="s2">&quot;https://cad.onshape.com/documents/2d47b6abec9d1de1d2538372/w/39e483948767f72c97d2792f/e/0639ea3c439aa0947744d29a&quot;</span><span class="p">)</span>
 
-<span class="c1"># load the client for this part</span>
-<span class="n">my_cube</span> <span class="o">=</span> <span class="n">Part</span><span class="p">(</span><span class="s2">&quot;https://cad.onshape.com/documents/2d47b6abec9d1de1d2538372/w/39e483948767f72c97d2792f/e/0639ea3c439aa0947744d29a&quot;</span><span class="p">)</span>
-<span class="n">my_cube</span><span class="o">.</span>
+ <span class="c1"># Access part parameters</span>
+ <span class="n">my_cube</span><span class="o">.</span><span class="n">params</span>
+
+ <span class="c1"># Set part parameters. Here I set L to 100 millimeters and has_fillet to false.</span>
+ <span class="n">my_cube</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="mi">150</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mm</span><span class="p">,</span> <span class="s1">&#39;has_fillet&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+
+ <span class="c1"># Access measurements defined within the OnShape &quot;Measure&quot; FeatureScript defined here: https://cad.onshape.com/documents/379f3f7b8ae77b02b702a487/w/0ad420b3718d5a2b6f6d712f/e/2e4fe1496c0fa6c042b89a73</span>
+ <span class="n">my_cube</span><span class="o">.</span><span class="n">measurements</span>
 </pre></div>
 </div>
-<p>For a longer demo, <a class="reference external" href="https://hub.mybinder.org/user/aguaclara-onshapepy-lvzgpurw/notebooks/docs/Example%20Notebook.ipynb">please see this notebook.</a></p>
 </div>
 <div class="section" id="authentication-configuration">
 <h2>Authentication &amp; Configuration<a class="headerlink" href="#authentication-configuration" title="Permalink to this headline">¶</a></h2>
@@ -242,7 +252,7 @@ scientific libraries to OnShape parts.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.7',
+            VERSION:'0.0.11',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
