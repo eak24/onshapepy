@@ -35,7 +35,8 @@ Straight to the code:
     # Access measurements defined within the OnShape "Measure" FeatureScript defined here: https://cad.onshape.com/documents/379f3f7b8ae77b02b702a487/w/0ad420b3718d5a2b6f6d712f/e/2e4fe1496c0fa6c042b89a73
     my_cube.measurements
 
-For a longer demo, `please see this notebook. <https://hub.mybinder.org/user/aguaclara-onshapepy-lvzgpurw/notebooks/docs/Example%20Notebook.ipynb>`_
+For a longer demo, `please see this notebook (under "docs/Example Notebook". <https://mybinder.org/v2/gh/AguaClara/onshapepy/master
+>`_
 
 Authentication & Configuration
 --------------------------------
