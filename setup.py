@@ -1,23 +1,16 @@
 from setuptools import setup
 
 
-# read the contents of your README file
-from os import path
-this_directory = path.abspath(path.dirname(__file__))
-
-def read(file_name):
-    with open(path.join(this_directory, file_name), encoding='utf-8') as f:
-        return f.read()
-
+long_description = '''Access OnShape part configurations from your python interpreter! Allows you to use Numpy, Scipy, and any other python packages you may need to accurately configure your part. An open source alternative to CADWolf or SwiftCalcs.'''
 
 setup(
     name= 'onshapepy',
-    version= '0.0.5',
+    version= '0.0.6',
     description= 'Drive part configurations from Python.',
-    long_description= read("README.md"),
+    long_description= long_description,
     author= 'Ethan Keller',
-    url= 'https://github.com/onshapepy/onshapepy/tree/master/python',
-    license= read("LICENSE"),
+    url= 'https://aguaclara.github.io/onshapepy/',
+    license= "The MIT License (MIT)",
     packages= [
         'onshapepy'
     ],
