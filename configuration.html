@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python Module Index &mdash; OnShapePy 0.0.4 documentation</title>
+  <title>OnShapePy Configuration &mdash; OnShapePy 0.0.4 documentation</title>
   
 
   
@@ -28,9 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
- 
-
-
+    <link rel="prev" title="OnShapePy Package" href="onshapepy.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,9 +82,14 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="onshapepy.html">OnShapePy Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="configuration.html">OnShapePy Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OnShapePy Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-from-a-file">Configuration From a File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-from-python">Configuration From Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-options">Configuration Options</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -132,10 +135,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Python Module Index</li>
+      <li>OnShapePy Configuration</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/configuration.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -147,55 +154,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-o"><strong>o</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-o"><td></td><td>
-       <strong>o</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <a href="onshapepy.html#module-onshapepy"><code class="xref">onshapepy</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="onshapepy.html#module-onshapepy.assembly"><code class="xref">onshapepy.assembly</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="onshapepy.html#module-onshapepy.core.client"><code class="xref">onshapepy.core.client</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="onshapepy.html#module-onshapepy.core.onshape"><code class="xref">onshapepy.core.onshape</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="onshapepy.html#module-onshapepy.core.utils"><code class="xref">onshapepy.core.utils</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="onshapepy.html#module-onshapepy.part"><code class="xref">onshapepy.part</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="onshapepy-configuration">
+<span id="configuration-file"></span><h1>OnShapePy Configuration<a class="headerlink" href="#onshapepy-configuration" title="Permalink to this headline">¶</a></h1>
+<p>OnShapePy supports two ways to specify a configuration:</p>
+<ol class="arabic simple">
+<li>(Recommended) A <strong>configuration file</strong> placed within the user’s home. It must be named “.onshapepy”. It uses YAML syntax.</li>
+<li>Manually <strong>configured within Python</strong>. As long as this runs first, it will configure the session and ignore the configuration file.</li>
+</ol>
+<p>Both methods support the same configuration keys and values. For a complete list of configuration options, go to <a class="reference internal" href="#configuration-options"><span class="std std-ref">Configuration Options</span></a>.</p>
+<div class="section" id="configuration-from-a-file">
+<h2>Configuration From a File<a class="headerlink" href="#configuration-from-a-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span>creds:
+    access_key: *******YOUR API KEY*******
+    secret_key: *******YOUR API SECRET****
+logging: True
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-from-python">
+<h2>Configuration From Python<a class="headerlink" href="#configuration-from-python" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">onshapepy.client</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;creds&quot;</span> <span class="p">:{</span>
+                        <span class="s2">&quot;access_key&quot;</span> <span class="p">:</span> <span class="s2">&quot;*******YOUR API KEY*******&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;secret_key&quot;</span> <span class="p">:</span> <span class="s2">&quot;*******YOUR API SECRET****&quot;</span><span class="p">}}</span>
+<span class="n">Client</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-options">
+<span id="id1"></span><h2>Configuration Options<a class="headerlink" href="#configuration-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>creds: dict</dt>
+<dd>a dictionary containing access_key and secret_key keys pointing to the user’s access key and secret key from OnShape.</dd>
+</dl>
+</div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="onshapepy.html" class="btn btn-neutral" title="OnShapePy Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>onshapepy.onshape &mdash; onshapepy 0.0.0 documentation</title>
+  <title>onshapepy.core.onshape &mdash; OnShapePy 0.0.4 documentation</title>
   
 
   
@@ -24,13 +24,13 @@
 
   
 
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 
   
-  <script src="../../_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -46,7 +46,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> onshapepy
+            <a href="../../../index.html" class="icon icon-home"> OnShapePy
           
 
           
@@ -55,11 +55,15 @@
           
             
             
+              <div class="version">
+                0.0.4
+              </div>
+            
           
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -76,8 +80,12 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../onshapepy.html">OnShapePy Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">OnShapePy Configuration</a></li>
+</ul>
+
             
           
         </div>
@@ -90,7 +98,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">onshapepy</a>
+          <a href="../../../index.html">OnShapePy</a>
         
       </nav>
 
@@ -119,11 +127,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>onshapepy.onshape</li>
+      <li>onshapepy.core.onshape</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -138,7 +146,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for onshapepy.onshape</h1><div class="highlight"><pre>
+  <h1>Source code for onshapepy.core.onshape</h1><div class="highlight"><pre>
 <span></span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">onshape</span>
 <span class="sd">=======</span>
@@ -146,7 +154,7 @@
 <span class="sd">Provides access to the Onshape REST API</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">onshapepy.core</span> <span class="k">import</span> <span class="n">utils</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -167,7 +175,7 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="Onshape"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.onshape.Onshape">[docs]</a><span class="k">class</span> <span class="nc">Onshape</span><span class="p">():</span>
+<div class="viewcode-block" id="Onshape"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.onshape.Onshape">[docs]</a><span class="k">class</span> <span class="nc">Onshape</span><span class="p">():</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Provides access to the Onshape REST API.</span>
 
@@ -177,42 +185,19 @@
 <span class="sd">        - logging (bool, default=True): Turn logging on or off</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">creds</span><span class="o">=</span><span class="s1">&#39;./creds.json&#39;</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">creds</span><span class="p">,</span> <span class="n">logging</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Instantiates an instance of the Onshape class. Reads credentials from a JSON file</span>
-<span class="sd">        of this format:</span>
-
-<span class="sd">            {</span>
-<span class="sd">                &quot;http://cad.onshape.com&quot;: {</span>
-<span class="sd">                    &quot;access_key&quot;: &quot;YOUR KEY HERE&quot;,</span>
-<span class="sd">                    &quot;secret_key&quot;: &quot;YOUR KEY HERE&quot;</span>
-<span class="sd">                },</span>
-<span class="sd">                etc... add new object for each stack to test on</span>
-<span class="sd">            }</span>
-
-<span class="sd">        The creds.json file should be stored in the root project folder; optionally,</span>
-<span class="sd">        you can specify the location of a different file.</span>
+<span class="sd">        Instantiates an instance of the Onshape class.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            - stack (str): Base URL</span>
-<span class="sd">            - creds (str, default=&#39;./creds.json&#39;): Credentials location</span>
+<span class="sd">            - creds (str): Credentials dict</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">creds</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is not a file&#39;</span> <span class="o">%</span> <span class="n">creds</span><span class="p">)</span>
-
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">creds</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">stacks</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">stack</span> <span class="ow">in</span> <span class="n">stacks</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_url</span> <span class="o">=</span> <span class="n">stack</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_access_key</span> <span class="o">=</span> <span class="n">stacks</span><span class="p">[</span><span class="n">stack</span><span class="p">][</span><span class="s1">&#39;access_key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_secret_key</span> <span class="o">=</span> <span class="n">stacks</span><span class="p">[</span><span class="n">stack</span><span class="p">][</span><span class="s1">&#39;secret_key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span> <span class="o">=</span> <span class="n">logging</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;specified stack not in file&#39;</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is not valid json&#39;</span> <span class="o">%</span> <span class="n">creds</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_url</span> <span class="o">=</span> <span class="n">stack</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_access_key</span> <span class="o">=</span> <span class="n">creds</span><span class="p">[</span><span class="s1">&#39;access_key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_secret_key</span> <span class="o">=</span> <span class="n">creds</span><span class="p">[</span><span class="s1">&#39;secret_key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span> <span class="o">=</span> <span class="n">logging</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="p">:</span>
             <span class="n">utils</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;onshape instance created: url = </span><span class="si">%s</span><span class="s1">, access key = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_access_key</span><span class="p">))</span>
@@ -299,7 +284,7 @@
 
         <span class="k">return</span> <span class="n">req_headers</span>
 
-<div class="viewcode-block" id="Onshape.request"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.onshape.Onshape.request">[docs]</a>    <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="p">{},</span> <span class="n">headers</span><span class="o">=</span><span class="p">{},</span> <span class="n">body</span><span class="o">=</span><span class="p">{},</span> <span class="n">base_url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Onshape.request"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.onshape.Onshape.request">[docs]</a>    <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="p">{},</span> <span class="n">headers</span><span class="o">=</span><span class="p">{},</span> <span class="n">body</span><span class="o">=</span><span class="p">{},</span> <span class="n">base_url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Issues a request to Onshape</span>
 
@@ -385,8 +370,8 @@
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.0',
+            URL_ROOT:'../../../',
+            VERSION:'0.0.4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -394,14 +379,14 @@
             SOURCELINK_SUFFIX: '.txt'
         };
     </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {

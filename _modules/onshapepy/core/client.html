@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>onshapepy.client &mdash; onshapepy 0.0.0 documentation</title>
+  <title>onshapepy.core.client &mdash; OnShapePy 0.0.4 documentation</title>
   
 
   
@@ -24,13 +24,13 @@
 
   
 
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 
   
-  <script src="../../_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -46,7 +46,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> onshapepy
+            <a href="../../../index.html" class="icon icon-home"> OnShapePy
           
 
           
@@ -55,11 +55,15 @@
           
             
             
+              <div class="version">
+                0.0.4
+              </div>
+            
           
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -76,8 +80,12 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../onshapepy.html">OnShapePy Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">OnShapePy Configuration</a></li>
+</ul>
+
             
           
         </div>
@@ -90,7 +98,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">onshapepy</a>
+          <a href="../../../index.html">OnShapePy</a>
         
       </nav>
 
@@ -119,11 +127,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>onshapepy.client</li>
+      <li>onshapepy.core.client</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -138,24 +146,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for onshapepy.client</h1><div class="highlight"><pre>
+  <h1>Source code for onshapepy.core.client</h1><div class="highlight"><pre>
 <span></span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">client</span>
 <span class="sd">======</span>
 
-<span class="sd">Convenience functions for working with the Onshape API</span>
+<span class="sd">Low-level convenience functions for working with the Onshape API. No custom objects are handled here - only dictionaries.</span>
+<span class="sd">Function names should be equivalent to the OnShape REST API names</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="kn">from</span> <span class="nn">.onshape</span> <span class="k">import</span> <span class="n">Onshape</span>
+<span class="kn">from</span> <span class="nn">onshapepy.core.onshape</span> <span class="k">import</span> <span class="n">Onshape</span>
 
 <span class="kn">import</span> <span class="nn">mimetypes</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">string</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">ruamel.yaml</span> <span class="k">import</span> <span class="n">YAML</span>
+
+<span class="n">yaml</span> <span class="o">=</span> <span class="n">YAML</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="Client"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client">[docs]</a><span class="k">class</span> <span class="nc">Client</span><span class="p">():</span>
+<div class="viewcode-block" id="Client"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client">[docs]</a><span class="k">class</span> <span class="nc">Client</span><span class="p">():</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Defines methods for testing the Onshape API. Comes with several methods:</span>
 
@@ -168,19 +181,42 @@
 <span class="sd">        - logging (bool, default=True): Turn logging on or off</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="s1">&#39;https://cad.onshape.com&#39;</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">creds</span><span class="o">=</span><span class="s1">&#39;./creds.json&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_conf</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;.onshapepy&#39;</span><span class="p">))):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Instantiates a new Onshape client.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            - stack (str, default=&#39;https://cad.onshape.com&#39;): Base URL</span>
-<span class="sd">            - logging (bool, default=True): Turn logging on or off</span>
+<span class="sd">            - conf (dict): a dictionary of configuration options. Default behavior is to load this from a YAML file that</span>
+<span class="sd">                is located in user&#39;s home directory and name &#39;.onshapepy&#39;. For options that can be set, look</span>
+<span class="sd">                at the documentation section on &#39;configuration&#39;.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span> <span class="o">=</span> <span class="n">stack</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_api</span> <span class="o">=</span> <span class="n">Onshape</span><span class="p">(</span><span class="n">stack</span><span class="o">=</span><span class="n">stack</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="n">logging</span><span class="p">,</span> <span class="n">creds</span><span class="o">=</span><span class="n">creds</span><span class="p">)</span>
+        <span class="n">conf</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;stack&#39;</span><span class="p">:</span> <span class="s1">&#39;https://cad.onshape.com&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;logging&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s1">&#39;creds&#39;</span><span class="p">:</span>
+                <span class="p">{</span>
+                     <span class="s2">&quot;access_key&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="s2">&quot;secret_key&quot;</span><span class="p">:</span> <span class="kc">None</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
 
-<div class="viewcode-block" id="Client.new_document"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.new_document">[docs]</a>    <span class="k">def</span> <span class="nf">new_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Test Document&#39;</span><span class="p">,</span> <span class="n">owner_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">public</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">conf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">user_conf</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">creds</span> <span class="o">=</span> <span class="n">conf</span><span class="p">[</span><span class="s1">&#39;creds&#39;</span><span class="p">]</span>
+
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;Please specify your OnShape acces_key and secret_key within the onshapepy &quot;</span>
+                                 <span class="s2">&quot;configuration file, by default located at &#39;home/.onshapepy&#39;.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span> <span class="o">=</span> <span class="n">conf</span><span class="p">[</span><span class="s1">&#39;stack&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_api</span> <span class="o">=</span> <span class="n">Onshape</span><span class="p">(</span><span class="n">conf</span><span class="p">[</span><span class="s1">&#39;stack&#39;</span><span class="p">],</span> <span class="n">conf</span><span class="p">[</span><span class="s1">&#39;creds&#39;</span><span class="p">],</span> <span class="n">conf</span><span class="p">[</span><span class="s1">&#39;logging&#39;</span><span class="p">])</span>
+
+
+
+<div class="viewcode-block" id="Client.new_document"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.new_document">[docs]</a>    <span class="k">def</span> <span class="nf">new_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Test Document&#39;</span><span class="p">,</span> <span class="n">owner_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">public</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Create a new document.</span>
 
@@ -201,7 +237,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.rename_document"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.rename_document">[docs]</a>    <span class="k">def</span> <span class="nf">rename_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.rename_document"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.rename_document">[docs]</a>    <span class="k">def</span> <span class="nf">rename_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Renames the specified document.</span>
 
@@ -219,7 +255,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents/&#39;</span> <span class="o">+</span> <span class="n">did</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.del_document"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.del_document">[docs]</a>    <span class="k">def</span> <span class="nf">del_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.del_document"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.del_document">[docs]</a>    <span class="k">def</span> <span class="nf">del_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Delete the specified document.</span>
 
@@ -232,7 +268,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents/&#39;</span> <span class="o">+</span> <span class="n">did</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.get_document"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.get_document">[docs]</a>    <span class="k">def</span> <span class="nf">get_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_document"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.get_document">[docs]</a>    <span class="k">def</span> <span class="nf">get_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Get details for a specified document.</span>
 
@@ -245,7 +281,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents/&#39;</span> <span class="o">+</span> <span class="n">did</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.list_documents"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.list_documents">[docs]</a>    <span class="k">def</span> <span class="nf">list_documents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.list_documents"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.list_documents">[docs]</a>    <span class="k">def</span> <span class="nf">list_documents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Get list of documents for current user.</span>
 
@@ -255,7 +291,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.create_assembly"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.create_assembly">[docs]</a>    <span class="k">def</span> <span class="nf">create_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;My Assembly&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.create_assembly"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.create_assembly">[docs]</a>    <span class="k">def</span> <span class="nf">create_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;My Assembly&#39;</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Creates a new assembly element in the specified document / workspace.</span>
 
@@ -274,7 +310,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/assemblies/d/&#39;</span> <span class="o">+</span> <span class="n">did</span> <span class="o">+</span> <span class="s1">&#39;/w/&#39;</span> <span class="o">+</span> <span class="n">wid</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.get_features"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.get_features">[docs]</a>    <span class="k">def</span> <span class="nf">get_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">eid</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_features"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.get_features">[docs]</a>    <span class="k">def</span> <span class="nf">get_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">eid</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Gets the feature list for specified document / workspace / part studio.</span>
 
@@ -289,7 +325,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/partstudios/d/&#39;</span> <span class="o">+</span> <span class="n">did</span> <span class="o">+</span> <span class="s1">&#39;/w/&#39;</span> <span class="o">+</span> <span class="n">wid</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span> <span class="n">eid</span> <span class="o">+</span> <span class="s1">&#39;/features&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.get_partstudio_tessellatededges"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.get_partstudio_tessellatededges">[docs]</a>    <span class="k">def</span> <span class="nf">get_partstudio_tessellatededges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">eid</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_partstudio_tessellatededges"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.get_partstudio_tessellatededges">[docs]</a>    <span class="k">def</span> <span class="nf">get_partstudio_tessellatededges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">eid</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Gets the tessellation of the edges of all parts in a part studio.</span>
 
@@ -304,7 +340,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/partstudios/d/&#39;</span> <span class="o">+</span> <span class="n">did</span> <span class="o">+</span> <span class="s1">&#39;/w/&#39;</span> <span class="o">+</span> <span class="n">wid</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span> <span class="n">eid</span> <span class="o">+</span> <span class="s1">&#39;/tessellatededges&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.upload_blob"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.upload_blob">[docs]</a>    <span class="k">def</span> <span class="nf">upload_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;./blob.json&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.upload_blob"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.upload_blob">[docs]</a>    <span class="k">def</span> <span class="nf">upload_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;./blob.json&#39;</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Uploads a file to a new blob element in the specified doc.</span>
 
@@ -339,7 +375,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/blobelements/d/&#39;</span> <span class="o">+</span> <span class="n">did</span> <span class="o">+</span> <span class="s1">&#39;/w/&#39;</span> <span class="o">+</span> <span class="n">wid</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">req_headers</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.part_studio_stl"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.part_studio_stl">[docs]</a>    <span class="k">def</span> <span class="nf">part_studio_stl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">eid</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.part_studio_stl"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.part_studio_stl">[docs]</a>    <span class="k">def</span> <span class="nf">part_studio_stl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">eid</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Exports STL export from a part studio</span>
 
@@ -359,9 +395,9 @@
 
 <span class="c1"># Below are functions added for AguaClara</span>
 
-<div class="viewcode-block" id="Client.insert_configured_part"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.insert_configured_part">[docs]</a>    <span class="k">def</span> <span class="nf">insert_configured_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assembly_uri</span><span class="p">,</span> <span class="n">part_uri</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.create_assembly_instance"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.create_assembly_instance">[docs]</a>    <span class="k">def</span> <span class="nf">create_assembly_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assembly_uri</span><span class="p">,</span> <span class="n">part_uri</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Insert a configurable part into an assembly</span>
+<span class="sd">        Insert a configurable part into an assembly.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            - assembly (dict): eid, wid, and did of the assembly into which will be inserted</span>
@@ -379,15 +415,15 @@
           <span class="c1"># &quot;partId&quot;: &quot;String&quot;,</span>
           <span class="c1"># &quot;featureId&quot;: &quot;String&quot;,</span>
           <span class="c1"># &quot;microversionId&quot;: &quot;String&quot;,</span>
-          <span class="s2">&quot;versionId&quot;</span><span class="p">:</span> <span class="n">part_uri</span><span class="p">[</span><span class="s2">&quot;vid&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;versionId&quot;</span><span class="p">:</span> <span class="n">part_uri</span><span class="p">[</span><span class="s2">&quot;wvm&quot;</span><span class="p">],</span>
           <span class="c1"># &quot;microversionId&quot;: &quot;String&quot;,</span>
           <span class="s2">&quot;isAssembly&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
           <span class="s2">&quot;isWholePartStudio&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
           <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode_configuration</span><span class="p">(</span><span class="n">part_uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">],</span> <span class="n">part_uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">],</span> <span class="n">configuration</span><span class="p">)</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/assemblies/d/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/w/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;wid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/instances&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/assemblies/d/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/w/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;wvm&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/instances&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.encode_configuration"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.encode_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">encode_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">eid</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.encode_configuration"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.encode_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">encode_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">eid</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Encode parameters as a URL-ready string</span>
 
@@ -415,7 +451,7 @@
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))[</span><span class="s2">&quot;encodedId&quot;</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="Client.get_configuration"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.client.Client.get_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_configuration"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.get_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        get the configuration of a PartStudio</span>
 
@@ -430,7 +466,57 @@
             <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/vnd.onshape.v1+json&#39;</span><span class="p">,</span>
             <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/partstudios/d/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/v/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;vid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/configuration&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">req_headers</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/partstudios/d/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;wvm_type&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;wvm&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/configuration&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">req_headers</span><span class="p">)</span></div>
+
+
+    <span class="c1">############### Part Studio ###########################</span>
+
+<div class="viewcode-block" id="Client.update_configuration"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.update_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">update_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">eid</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Update the configuration specified in the payload</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            - did (str): Document ID</span>
+<span class="sd">            - eid (str): Element ID</span>
+<span class="sd">            - payload (json): the request body</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            - configuration (str): the url-ready configuration string.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">req_headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/vnd.onshape.v1+json&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+        <span class="p">}</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/partstudios/d/&#39;</span> <span class="o">+</span> <span class="n">did</span> <span class="o">+</span> <span class="s1">&#39;/w/&#39;</span> <span class="o">+</span> <span class="n">wid</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span> <span class="n">eid</span> <span class="o">+</span> <span class="s1">&#39;/configuration&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">req_headers</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="Client.evaluate_featurescript"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.evaluate_featurescript">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_featurescript</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">script</span><span class="p">,</span> <span class="n">queries</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            uri (dict): Location including did, eid, wvm</span>
+<span class="sd">            queries ([dict]):</span>
+<span class="sd">            script (str): A FeatureScript function to run.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - requests.Response: Onshape response data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">req_headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/vnd.onshape.v1+json&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+        <span class="p">}</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;queries&#39;</span><span class="p">:</span> <span class="n">queries</span><span class="p">,</span>
+            <span class="s1">&#39;script&#39;</span><span class="p">:</span> <span class="n">script</span>
+
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;/api/partstudios/d/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;wvm_type&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;wvm&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span>
+                                 <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/featurescript&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">req_headers</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
@@ -464,8 +550,8 @@
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.0',
+            URL_ROOT:'../../../',
+            VERSION:'0.0.4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -473,14 +559,14 @@
             SOURCELINK_SUFFIX: '.txt'
         };
     </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {

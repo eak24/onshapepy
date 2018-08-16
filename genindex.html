@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; onshapepy 0.0.0 documentation</title>
+  <title>Index &mdash; OnShapePy 0.0.4 documentation</title>
   
 
   
@@ -47,7 +47,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> onshapepy
+            <a href="index.html" class="icon icon-home"> OnShapePy
           
 
           
@@ -55,6 +55,10 @@
 
           
             
+            
+              <div class="version">
+                0.0.4
+              </div>
             
           
 
@@ -77,8 +81,12 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="onshapepy.html">OnShapePy Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">OnShapePy Configuration</a></li>
+</ul>
+
             
           
         </div>
@@ -91,7 +99,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">onshapepy</a>
+          <a href="index.html">OnShapePy</a>
         
       </nav>
 
@@ -150,6 +158,7 @@
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
@@ -168,11 +177,15 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client">Client (class in onshapepy.client)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client">Client (class in onshapepy.core.client)</a>
+</li>
+      <li><a href="onshapepy.html#onshapepy.part.Configuration">Configuration (class in onshapepy.part)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.create_assembly">create_assembly() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.create_assembly">create_assembly() (onshapepy.core.client.Client method)</a>
+</li>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.create_assembly_instance">create_assembly_instance() (onshapepy.core.client.Client method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -180,7 +193,7 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.del_document">del_document() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.del_document">del_document() (onshapepy.core.client.Client method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -188,7 +201,11 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.encode_configuration">encode_configuration() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.encode_configuration">encode_configuration() (onshapepy.core.client.Client method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.evaluate_featurescript">evaluate_featurescript() (onshapepy.core.client.Client method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -196,15 +213,17 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.get_configuration">get_configuration() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.get_configuration">get_configuration() (onshapepy.core.client.Client method)</a>
 </li>
-      <li><a href="onshapepy.html#onshapepy.client.Client.get_document">get_document() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.get_document">get_document() (onshapepy.core.client.Client method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.get_features">get_features() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.get_features">get_features() (onshapepy.core.client.Client method)</a>
 </li>
-      <li><a href="onshapepy.html#onshapepy.client.Client.get_partstudio_tessellatededges">get_partstudio_tessellatededges() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.part.Configuration.get_params">get_params() (onshapepy.part.Configuration method)</a>
+</li>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.get_partstudio_tessellatededges">get_partstudio_tessellatededges() (onshapepy.core.client.Client method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -215,28 +234,40 @@
       <li><a href="onshapepy.html#onshapepy.assembly.Assembly.insert">insert() (onshapepy.assembly.Assembly method)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.insert_configured_part">insert_configured_part() (onshapepy.client.Client method)</a>
-</li>
-  </ul></td>
 </tr></table>
 
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.list_documents">list_documents() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.list_documents">list_documents() (onshapepy.core.client.Client method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.utils.log">log() (in module onshapepy.utils)</a>
+      <li><a href="onshapepy.html#onshapepy.core.utils.log">log() (in module onshapepy.core.utils)</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="onshapepy.html#onshapepy.part.Measurements">Measurements (class in onshapepy.part)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="onshapepy.html#onshapepy.part.Measurements.measurements">measurements (onshapepy.part.Measurements attribute)</a>
+
+      <ul>
+        <li><a href="onshapepy.html#onshapepy.part.Part.measurements">(onshapepy.part.Part attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.new_document">new_document() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.new_document">new_document() (onshapepy.core.client.Client method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -244,7 +275,7 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.onshape.Onshape">Onshape (class in onshapepy.onshape)</a>
+      <li><a href="onshapepy.html#onshapepy.core.onshape.Onshape">Onshape (class in onshapepy.core.onshape)</a>
 </li>
       <li><a href="onshapepy.html#module-onshapepy">onshapepy (module)</a>
 </li>
@@ -252,13 +283,13 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#module-onshapepy.client">onshapepy.client (module)</a>
+      <li><a href="onshapepy.html#module-onshapepy.core.client">onshapepy.core.client (module)</a>
 </li>
-      <li><a href="onshapepy.html#module-onshapepy.onshape">onshapepy.onshape (module)</a>
+      <li><a href="onshapepy.html#module-onshapepy.core.onshape">onshapepy.core.onshape (module)</a>
+</li>
+      <li><a href="onshapepy.html#module-onshapepy.core.utils">onshapepy.core.utils (module)</a>
 </li>
       <li><a href="onshapepy.html#module-onshapepy.part">onshapepy.part (module)</a>
-</li>
-      <li><a href="onshapepy.html#module-onshapepy.utils">onshapepy.utils (module)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -266,23 +297,37 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.part.Part">Part (class in onshapepy.part)</a>
+      <li><a href="onshapepy.html#onshapepy.part.Configuration.parameter_map">parameter_map (onshapepy.part.Configuration attribute)</a>
 </li>
+      <li><a href="onshapepy.html#onshapepy.part.Configuration.params">params (onshapepy.part.Configuration attribute)</a>
+
+      <ul>
+        <li><a href="onshapepy.html#onshapepy.part.Part.params">(onshapepy.part.Part attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.part_studio_stl">part_studio_stl() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.part.Part">Part (class in onshapepy.part)</a>
 </li>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.part_studio_stl">part_studio_stl() (onshapepy.core.client.Client method)</a>
+</li>
+      <li><a href="onshapepy.html#onshapepy.part.Configuration.payload">payload (onshapepy.part.Configuration attribute)</a>
+
+      <ul>
+        <li><a href="onshapepy.html#onshapepy.part.Measurements.payload">(onshapepy.part.Measurements attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.client.Client.rename_document">rename_document() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.rename_document">rename_document() (onshapepy.core.client.Client method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.onshape.Onshape.request">request() (onshapepy.onshape.Onshape method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.onshape.Onshape.request">request() (onshapepy.core.onshape.Onshape method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -290,13 +335,17 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.part.Part.update_configuration">update_configuration() (onshapepy.part.Part method)</a>
+      <li><a href="onshapepy.html#onshapepy.part.Configuration.update">update() (onshapepy.part.Configuration method)</a>
+
+      <ul>
+        <li><a href="onshapepy.html#onshapepy.part.Measurements.update">(onshapepy.part.Measurements method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="onshapepy.html#onshapepy.part.Part.update_server">update_server() (onshapepy.part.Part method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.update_configuration">update_configuration() (onshapepy.core.client.Client method)</a>
 </li>
-      <li><a href="onshapepy.html#onshapepy.client.Client.upload_blob">upload_blob() (onshapepy.client.Client method)</a>
+      <li><a href="onshapepy.html#onshapepy.core.client.Client.upload_blob">upload_blob() (onshapepy.core.client.Client method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -335,7 +384,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.0',
+            VERSION:'0.0.4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

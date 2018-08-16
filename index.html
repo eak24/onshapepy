@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to onshapepy’s documentation! &mdash; onshapepy 0.0.0 documentation</title>
+  <title>Welcome to onshapepy’s documentation! &mdash; OnShapePy 0.0.4 documentation</title>
   
 
   
@@ -27,7 +27,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="OnShapePy Package" href="onshapepy.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -46,7 +47,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> onshapepy
+            <a href="#" class="icon icon-home"> OnShapePy
           
 
           
@@ -54,6 +55,10 @@
 
           
             
+            
+              <div class="version">
+                0.0.4
+              </div>
             
           
 
@@ -76,16 +81,12 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to onshapepy’s documentation!</a><ul>
-<li><a class="reference internal" href="#api-key">API Key</a></li>
-<li><a class="reference internal" href="#quick-demo">Quick demo:</a></li>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="onshapepy.html">OnShapePy Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">OnShapePy Configuration</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-</div>
+
             
           
         </div>
@@ -98,7 +99,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">onshapepy</a>
+          <a href="#">OnShapePy</a>
         
       </nav>
 
@@ -150,45 +151,45 @@
             
   <div class="section" id="welcome-to-onshapepy-s-documentation">
 <h1>Welcome to onshapepy’s documentation!<a class="headerlink" href="#welcome-to-onshapepy-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>This is an unofficial fork of the <a class="reference external" href="https://github.com/onshape-public/apikey">OnShape APIkey application.</a></p>
-<p>This is a connector between python and OnShape. It is used to send data to configurable partStudios. Through this connector, you can control FeatureScript features, import configured parts, download configurations all with Python.</p>
-<p>At AguaClara, we use this connector to upload parameters of our hydraulic design that are calculated in Python.</p>
-<div class="section" id="api-key">
-<h2>API Key<a class="headerlink" href="#api-key" title="Permalink to this headline">¶</a></h2>
-<p>To give OnShape access to your account, you’ll need to access your API key here and put it into a creds.json file that looks like this:</p>
-<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;https://cad.onshape.com&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;access_key&quot;</span><span class="p">:</span> <span class="s2">&quot;*******YOUR API KEY*******&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;secret_key&quot;</span><span class="p">:</span> <span class="s2">&quot;*******YOUR API SECRET****&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
+<p>OnShapePy gives you the ability to control OnShape configurable parts with Python, effectively unlocking the vast
+scientific libraries to OnShape parts.</p>
 <div class="section" id="quick-demo">
 <h2>Quick demo:<a class="headerlink" href="#quick-demo" title="Permalink to this headline">¶</a></h2>
 <p>Copy a document and adjust cube parameters from python!</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">onshape</span>
-<span class="kn">from</span> <span class="nn">onshape</span> <span class="kn">import</span> <span class="n">Part</span>
-<span class="kn">from</span> <span class="nn">onshape</span> <span class="kn">import</span> <span class="n">Client</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">onshape</span> <span class="kn">import</span> <span class="n">Part</span>
 
-<span class="c1"># load the API key</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">creds</span> <span class="o">=</span> <span class="s2">&quot;file path to creds&quot;</span><span class="p">)</span>
+
 
 <span class="c1"># load the client for this part</span>
-<span class="n">my_cube</span> <span class="o">=</span> <span class="n">Part</span><span class="p">(</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span><span class="s2">&quot;cube&quot;</span><span class="p">)</span>
-<span class="n">my_pyramid</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">(</span><span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">eid</span><span class="p">)</span>
-
-
-<span class="c1"># set various parameters</span>
-<span class="n">my_cube</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">20</span>
-<span class="n">my_cube</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">][</span><span class="s2">&quot;units&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;inch&quot;</span>
-
-<span class="c1"># Insert into the assembly</span>
-<span class="n">my_pyramid</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">my_cube</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="n">my_cube</span> <span class="o">=</span> <span class="n">Part</span><span class="p">(</span><span class="s2">&quot;https://cad.onshape.com/documents/2d47b6abec9d1de1d2538372/w/39e483948767f72c97d2792f/e/0639ea3c439aa0947744d29a&quot;</span><span class="p">)</span>
+<span class="n">my_cube</span><span class="o">.</span>
 </pre></div>
 </div>
+<p>For a longer demo, <a class="reference external" href="https://hub.mybinder.org/user/aguaclara-onshapepy-lvzgpurw/notebooks/docs/Example%20Notebook.ipynb">please see this notebook.</a></p>
+</div>
+<div class="section" id="authentication-configuration">
+<h2>Authentication &amp; Configuration<a class="headerlink" href="#authentication-configuration" title="Permalink to this headline">¶</a></h2>
+<p>To give OnShape access to your account, you’ll need to specify credentials as shown in <a class="reference internal" href="configuration.html#configuration-file"><span class="std std-ref">OnShapePy Configuration</span></a>.</p>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="onshapepy.html">OnShapePy Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="onshapepy.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy.assembly">onshapepy.assembly module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy.core.client">onshapepy.client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy.core.onshape">onshapepy.onshape module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy.part">onshapepy.part module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy.core.utils">onshapepy.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">OnShapePy Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-from-a-file">Configuration From a File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-from-python">Configuration From Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-options">Configuration Options</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -206,6 +207,13 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="onshapepy.html" class="btn btn-neutral float-right" title="OnShapePy Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
   
 
   <hr/>
@@ -234,7 +242,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.0',
+            VERSION:'0.0.4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

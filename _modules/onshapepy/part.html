@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>onshapepy.part &mdash; onshapepy 0.0.0 documentation</title>
+  <title>onshapepy.part &mdash; OnShapePy 0.0.4 documentation</title>
   
 
   
@@ -46,7 +46,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> onshapepy
+            <a href="../../index.html" class="icon icon-home"> OnShapePy
           
 
           
@@ -54,6 +54,10 @@
 
           
             
+            
+              <div class="version">
+                0.0.4
+              </div>
             
           
 
@@ -76,8 +80,12 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../onshapepy.html">OnShapePy Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration.html">OnShapePy Configuration</a></li>
+</ul>
+
             
           
         </div>
@@ -90,7 +98,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">onshapepy</a>
+          <a href="../../index.html">OnShapePy</a>
         
       </nav>
 
@@ -146,50 +154,172 @@
 <span class="sd">OnShape part that maps to a part studio</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="kn">from</span> <span class="nn">onshapepy.client</span> <span class="k">import</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">onshapepy.core.client</span> <span class="k">import</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">onshapepy.core.context</span> <span class="k">import</span> <span class="n">Context</span>
+<span class="kn">from</span> <span class="nn">onshapepy.core.utils</span> <span class="k">import</span> <span class="n">parse_quantity</span>
 <span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">onshapepy.uri</span> <span class="k">import</span> <span class="n">Uri</span>
+<span class="kn">import</span> <span class="nn">pint</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span>
+
 
 <div class="viewcode-block" id="Part"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Part">[docs]</a><span class="k">class</span> <span class="nc">Part</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;a part is used to configure a part studio. This reflects a part at a specific OnShape version. Anything that</span>
+    <span class="sd">&quot;&quot;&quot;A part is used to configure a part studio. This reflects a part at a specific OnShape version. Anything that</span>
 <span class="sd">    updates the part will then create a new instance of part to be used.</span>
+
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">vid</span><span class="p">,</span> <span class="n">eid</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
-<span class="sd">            - did (str): document id</span>
-<span class="sd">            - vid (str): the version id</span>
-<span class="sd">            - eid (str): element id</span>
+<span class="sd">            - url (str): the url of the Part Studio</span>
 <span class="sd">            - params (dict, opt): dict of parameter objects. These are objects that return valid parameter settings</span>
 <span class="sd">                when encoded as a string.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;did&quot;</span><span class="p">:</span> <span class="n">did</span><span class="p">,</span> <span class="s2">&quot;vid&quot;</span><span class="p">:</span> <span class="n">vid</span><span class="p">,</span> <span class="s2">&quot;eid&quot;</span><span class="p">:</span> <span class="n">eid</span><span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">Uri</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1">#post defined params if necessary</span>
+        <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_measurements</span> <span class="o">=</span> <span class="n">Measurements</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_measurements</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">measurements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_measurements</span><span class="o">.</span><span class="n">measurements</span>
 
 
-<div class="viewcode-block" id="Part.update_server"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Part.update_server">[docs]</a>    <span class="k">def</span> <span class="nf">update_server</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Send the current configuration to the server</span>
-<span class="sd">        :return:</span>
-<span class="sd">        TODO: when OnShape releases the ability to update a part instance in an assembly with new configuration, write this.</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span><span class="o">.</span><span class="n">params</span>
+
+    <span class="nd">@params</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set configuration variables for an OnShape part.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_measurements</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Configuration"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Configuration">[docs]</a><span class="k">class</span> <span class="nc">Configuration</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;The collection of configuration values. This class simplifies interacting with the configuration REST API and</span>
+<span class="sd">    some caching to reduce wait times.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Holds the configuration state specified by the uri. The most recent server response is held in raw_res. This</span>
+<span class="sd">        is used to generate a list of easier to understand and serialize dictionary of config values.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">payload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Configuration.update"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Configuration.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Push params to OnShape and synchronize the local copy</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Context</span><span class="p">()</span><span class="o">.</span><span class="n">client</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">uri</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">params</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">payload</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;currentConfiguration&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter_map</span><span class="p">[</span><span class="n">k</span><span class="p">]][</span><span class="s2">&quot;message&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">m</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">m</span><span class="p">[</span><span class="s2">&quot;expression&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="n">m</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Part.update_configuration"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Part.update_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">update_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get the current configuration from OnShape and put it into the part&#39;s configuration.</span>
-<span class="sd">        :return:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">update_configuration</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">did</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">wvm</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">eid</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+
+        <span class="c1"># If it was a good request, update config to be consistent with online.</span>
+        <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="Configuration.get_params"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Configuration.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Manually pull params defined in config from OnShape and return a python representation of the params.</span>
+<span class="sd">        Quantities are converted to pint quantities, Bools are converted to python bools and Enums are converted</span>
+<span class="sd">        to strings. Note that Enum names are autogenerated by OnShape and do not match the name on the OnShape UI.&quot;&quot;&quot;</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Context</span><span class="p">()</span><span class="o">.</span><span class="n">client</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">uri</span><span class="o">.</span><span class="n">as_dict</span><span class="p">())</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the params of response data from the API.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        d: dict</span>
+<span class="sd">            Dictionary mapping of all configuration values</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
-        <span class="n">res_configuration</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))[</span><span class="s2">&quot;currentConfiguration&quot;</span><span class="p">]</span>
-        <span class="n">new_configuration</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">payload</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;currentConfiguration&quot;</span><span class="p">]):</span>
+            <span class="n">type_name</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;typeName&quot;</span><span class="p">]</span>
+            <span class="n">cp</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;configurationParameters&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">]</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">cp</span><span class="p">[</span><span class="s2">&quot;parameterName&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">type_name</span> <span class="o">==</span> <span class="s2">&quot;BTMParameterQuantity&quot;</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">v</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;expression&quot;</span><span class="p">])</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">v</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">type_name</span> <span class="o">==</span> <span class="s2">&quot;BTMParameterBoolean&quot;</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">type_name</span> <span class="o">==</span> <span class="s2">&quot;BTMParameterEnum&quot;</span><span class="p">:</span>
+                <span class="n">enum</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+                <span class="n">enum_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;option&#39;</span><span class="p">]:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">])}</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">cp</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="n">enum_map</span><span class="p">[</span><span class="n">enum</span><span class="p">]][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;optionName&#39;</span><span class="p">]</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="k">return</span> <span class="n">d</span>
 
-        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">res_configuration</span><span class="p">:</span>
-            <span class="n">new_param</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">new_param</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
-            <span class="n">new_param</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;units&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;units&quot;</span> <span class="ow">in</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
-            <span class="n">new_configuration</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;parameterId&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">new_param</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">parameter_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">payload</span>
+        <span class="n">parameter_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;currentConfiguration&quot;</span><span class="p">]):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;configurationParameters&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;parameterName&quot;</span><span class="p">]</span>
+            <span class="n">parameter_map</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="n">parameter_map</span></div>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">new_configuration</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="Measurements"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Measurements">[docs]</a><span class="k">class</span> <span class="nc">Measurements</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Result of &quot;output dimensions&quot; as specified with the &quot;Measure&quot; features within the part Studio&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+
+<div class="viewcode-block" id="Measurements.update"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Measurements.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Update all local variable names to match OnShape. &quot;&quot;&quot;</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Context</span><span class="p">()</span><span class="o">.</span><span class="n">client</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">uri</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        function(context, queries) {</span>
+<span class="s2">            return getVariable(context, &quot;measurements&quot;);</span>
+<span class="s2">        }</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">evaluate_featurescript</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">as_dict</span><span class="p">(),</span> <span class="n">script</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">payload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">measurements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">m_dictionary</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;key&quot;</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">]</span>
+            <span class="n">m_dictionary</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">parse_quantity</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">m_dictionary</span></div>
 </pre></div>
 
            </div>
@@ -224,7 +354,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.0.0',
+            VERSION:'0.0.4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

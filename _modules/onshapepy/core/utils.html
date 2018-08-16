@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>onshapepy.utils &mdash; onshapepy 0.0.0 documentation</title>
+  <title>onshapepy.core.utils &mdash; OnShapePy 0.0.4 documentation</title>
   
 
   
@@ -24,13 +24,13 @@
 
   
 
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 
   
-  <script src="../../_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -46,7 +46,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> onshapepy
+            <a href="../../../index.html" class="icon icon-home"> OnShapePy
           
 
           
@@ -55,11 +55,15 @@
           
             
             
+              <div class="version">
+                0.0.4
+              </div>
+            
           
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -76,8 +80,12 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../onshapepy.html">OnShapePy Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">OnShapePy Configuration</a></li>
+</ul>
+
             
           
         </div>
@@ -90,7 +98,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">onshapepy</a>
+          <a href="../../../index.html">OnShapePy</a>
         
       </nav>
 
@@ -119,11 +127,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>onshapepy.utils</li>
+      <li>onshapepy.core.utils</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -138,7 +146,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for onshapepy.utils</h1><div class="highlight"><pre>
+  <h1>Source code for onshapepy.core.utils</h1><div class="highlight"><pre>
 <span></span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">utils</span>
 <span class="sd">=====</span>
@@ -154,7 +162,7 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="log"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.utils.log">[docs]</a><span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="log"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.utils.log">[docs]</a><span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Logs a message to the console, with optional level paramater</span>
 
@@ -213,6 +221,32 @@
 
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lvl</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">parse_quantity</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse an OnShape units definition</span>
+<span class="sd">    Args:</span>
+<span class="sd">        q:</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        a string that can be converted to any other unit engine.</span>
+
+<span class="sd">    &gt;&gt;&gt; from onshapepy.core.utils import parse_quantity</span>
+<span class="sd">    &gt;&gt;&gt; d = {&#39;value&#39;: 0.1414213562373095, &#39;unitToPower&#39;: [{&#39;value&#39;: 1, &#39;key&#39;: &#39;METER&#39;}], &#39;typeTag&#39;: &#39;&#39;}</span>
+<span class="sd">    &gt;&gt;&gt; parse_quantity(d)</span>
+<span class="sd">    &#39;0.1414213562373095*meter&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; d = {&#39;value&#39;: 0.1414213562373095, &#39;unitToPower&#39;: [{&#39;value&#39;: 3, &#39;key&#39;: &#39;MILLIMETER&#39;}], &#39;typeTag&#39;: &#39;&#39;}</span>
+<span class="sd">    &gt;&gt;&gt; parse_quantity(d)</span>
+<span class="sd">    &#39;0.1414213562373095*millimeter**3&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">units_s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">q</span><span class="p">[</span><span class="s1">&#39;unitToPower&#39;</span><span class="p">]:</span>
+        <span class="n">units_s</span> <span class="o">=</span> <span class="n">units_s</span> <span class="o">+</span> <span class="s2">&quot;*&quot;</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">power</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">power</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">units_s</span> <span class="o">=</span> <span class="n">units_s</span> <span class="o">+</span> <span class="s2">&quot;**&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">units_s</span>
 </pre></div>
 
            </div>
@@ -246,8 +280,8 @@
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.0.0',
+            URL_ROOT:'../../../',
+            VERSION:'0.0.4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -255,14 +289,14 @@
             SOURCELINK_SUFFIX: '.txt'
         };
     </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {
