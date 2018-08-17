@@ -11,7 +11,7 @@ See how to connect to a PartStudio and adjust parameters from python below!
 
 .. raw:: html
 
-    <iframe width="700" height="460" src="https://www.youtube.com/embed/TkA6F1ZhfWU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/285497632" width="700" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 Straight to the code
 ---------------------
