@@ -1,5 +1,6 @@
 from onshapepy.core.client import Client
 from onshapepy.uri import Uri
+import pytest
 
 # This is from a test document on OnShape, publicly available. It is a standard cube in a partStudio.
 # https://cad.onshape.com/documents/8ec353ba00f37f447b5a61f5/w/04c36c786829759832bd3d1a/e/2918f0f5adfa39d3047f19d0
@@ -21,3 +22,7 @@ def test_rename_document(client):
 def test_get_configuration(client):
     res = client.get_configuration(uri.as_dict())
     assert res.status_code == 200
+
+def test_client_without_file():
+    with pytest.raises(AssertionError):
+        client = Client(conf_file="This file doesn't exist")

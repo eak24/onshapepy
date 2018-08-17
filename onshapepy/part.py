@@ -1,7 +1,4 @@
 '''
-part
-====
-
 OnShape part that maps to a part studio
 '''
 
@@ -105,10 +102,8 @@ class Configuration:
     def params(self):
         """Get the params of response data from the API.
 
-        Returns
-        -------
-        d: dict
-            Dictionary mapping of all configuration values
+        Returns:
+            - d (dict): Dictionary mapping of all configuration values
         """
         payload = self.payload
         d = {}

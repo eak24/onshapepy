@@ -32,38 +32,50 @@ class Client():
         - logging (bool, default=True): Turn logging on or off
     '''
 
-    def __init__(self, user_conf=yaml.load(Path.home().joinpath('.onshapepy'))):
+    def __init__(self, conf=None, conf_file=".onshapepy"):
         '''
         Instantiates a new Onshape client.
 
+        Attributes:
+            - conf: the configuration that generated this client. This is read-only and for testing purposes.
+
         Args:
-            - conf (dict): a dictionary of configuration options. Default behavior is to load this from a YAML file that
+            - configuration (dict, optional): a dictionary of configuration options. Default behavior is to load this from a YAML file that
                 is located in user's home directory and name '.onshapepy'. For options that can be set, look
                 at the documentation section on 'configuration'.
         '''
 
-        conf = {
+        default_conf = {
             'stack': 'https://cad.onshape.com',
             'logging': False,
-            'creds':
-                {
-                     "access_key": None,
-                     "secret_key": None
-                }
+            'creds': None
         }
 
-        conf.update(user_conf)
-
         try:
-            creds = conf['creds']
-
-
+            user_conf = yaml.load(Path.home().joinpath(conf_file))
+            default_conf.update(user_conf)
         except:
+            pass
+
+        if conf:
+            default_conf.update(conf)
+
+        if not default_conf['creds']:
             raise AssertionError("Please specify your OnShape acces_key and secret_key within the onshapepy "
                                  "configuration file, by default located at 'home/.onshapepy'.")
 
-        self._stack = conf['stack']
-        self._api = Onshape(conf['stack'], conf['creds'], conf['logging'])
+        self.conf = default_conf
+
+        self._stack = default_conf['stack']
+        self._api = Onshape(default_conf['stack'], default_conf['creds'], default_conf['logging'])
+
+    def update(self, conf):
+        """Update the client with a new configuration
+
+        Args:
+            - conf (dict): a client configuration dictionary.
+        """
+        Client(self.conf.update(conf))
 
 
 

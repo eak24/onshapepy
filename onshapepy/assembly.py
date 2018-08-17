@@ -12,10 +12,8 @@ class Assembly:
     def __init__(self, url):
         """ Connect to an assembly that points to the assembly specified with did, wid and eid.
 
-        Parameters
-        ----------
-        url:
-            The url of the onshape item
+        Args:
+            - url (str): The url of the onshape item
         """
         self.uri = Uri(url)
 
@@ -23,16 +21,12 @@ class Assembly:
     def insert(self, part, client):
         """ Insert a part into this assembly.
 
-        Parameters
-        ----------
-        part
-            A Part instance that will be inserted.
-        client
-            A Client instance that does the inserting.
+        Args:
+            - part (onshapepy.part.Part) A Part instance that will be inserted.
+            - client (onshapepy.core.client.Client) A Client instance that does the inserting.
 
-        Returns
-        -------
-        Response from the server
+        Returns:
+            - requests.Response: Onshape response data
 
         """
         pass

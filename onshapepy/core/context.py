@@ -8,21 +8,25 @@ class Context:
 
     def __init__(self, **kwargs):
         if not Context.instance:
-            Context.instance = Context.__Context(kwargs)
+            Context.instance = Context.__Context(**kwargs)
         else:
-            Context.instance.update(kwargs)
+            if kwargs:
+                raise UserWarning("Can't set context options through the initializer once the context is created. "
+                                  "Instead, update the particular field of context you would like to or move the option"
+                                  " to the initial instantiation of context.")
 
     def __getattr__(self, name):
         return getattr(self.instance, name)
 
     class __Context:
-        def __init__(self, kwargs):
-            self.client = None
-            self.update(kwargs)
+        def __init__(self, **kwargs):
 
-        def update(self, kwargs):
-            if "client" in kwargs:
+            #initialize client
+            if 'client' in kwargs:
                 self.client = kwargs["client"]
             else:
                 self.client = Client()
+
+
+
 
