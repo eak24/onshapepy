@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to onshapepy’s documentation! &mdash; OnShapePy 0.0.11 documentation</title>
+  <title>Welcome to onshapepy’s documentation! &mdash; OnShapePy 0.0.12 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                0.0.11
+                0.0.12
               </div>
             
           
@@ -152,16 +152,22 @@
   <div class="section" id="welcome-to-onshapepy-s-documentation">
 <h1>Welcome to onshapepy’s documentation!<a class="headerlink" href="#welcome-to-onshapepy-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p>OnShapePy gives you the ability to control OnShape configurable parts with Python, effectively unlocking the vast
-scientific libraries to OnShape parts.</p>
-<div class="section" id="quick-demo">
-<h2>Quick demo:<a class="headerlink" href="#quick-demo" title="Permalink to this headline">¶</a></h2>
-<iframe width="700" height="460" src="https://www.youtube.com/embed/TkA6F1ZhfWU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><p>See how to connect to a PartStudio and adjust parameters from python!</p>
-<p>Straight to the code:</p>
+Python scientific libraries to OnShape parts.</p>
+<div class="section" id="quick-video-demo">
+<h2>Quick video demo<a class="headerlink" href="#quick-video-demo" title="Permalink to this headline">¶</a></h2>
+<p>See how to connect to a PartStudio and adjust parameters from python below!</p>
+<iframe src="https://player.vimeo.com/video/285497632" width="700" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="section" id="straight-to-the-code">
+<h2>Straight to the code<a class="headerlink" href="#straight-to-the-code" title="Permalink to this headline">¶</a></h2>
+<p>First specify your credentials in a file named: “~/.onshapepy”. Get your access and secret keys <a class="reference external" href="https://dev-portal.onshape.com/keys">here</a>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span>creds:
+    access_key: *******YOUR API KEY*******
+    secret_key: *******YOUR API SECRET****
+</pre></div>
+</div>
+<p><strong>Note: For more complex configurations, see :ref:`OnShapePy Configuration &lt;configuration_file&gt;`.</strong></p>
+<p>Then follow along with the code below:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">onshapepy.play</span> <span class="kn">import</span> <span class="o">*</span>
-
- <span class="c1"># Put in your access and secret keys</span>
- <span class="n">configuration</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;creds&#39;</span><span class="p">:{</span><span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="s1">&#39;MY ACCESS KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="s2">&quot;MY SECRET KEY&quot;</span><span class="p">}}</span>
- <span class="n">Client</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
 
  <span class="c1"># Put in your partstudio URL. Here&#39;s an example with a cube</span>
  <span class="n">my_cube</span> <span class="o">=</span> <span class="n">Part</span><span class="p">(</span><span class="s2">&quot;https://cad.onshape.com/documents/2d47b6abec9d1de1d2538372/w/39e483948767f72c97d2792f/e/0639ea3c439aa0947744d29a&quot;</span><span class="p">)</span>
@@ -176,10 +182,6 @@ scientific libraries to OnShape parts.</p>
  <span class="n">my_cube</span><span class="o">.</span><span class="n">measurements</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="authentication-configuration">
-<h2>Authentication &amp; Configuration<a class="headerlink" href="#authentication-configuration" title="Permalink to this headline">¶</a></h2>
-<p>To give OnShape access to your account, you’ll need to specify credentials as shown in <a class="reference internal" href="configuration.html#configuration-file"><span class="std std-ref">OnShapePy Configuration</span></a>.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -252,7 +254,7 @@ scientific libraries to OnShape parts.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.11',
+            VERSION:'0.0.12',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

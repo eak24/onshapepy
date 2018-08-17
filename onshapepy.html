@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>OnShapePy Package &mdash; OnShapePy 0.0.11 documentation</title>
+  <title>OnShapePy Package &mdash; OnShapePy 0.0.12 documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.0.11
+                0.0.12
               </div>
             
           
@@ -95,10 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#onshape">onshape</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-onshapepy.part">onshapepy.part module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#part">part</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-onshapepy.part">onshapepy.part module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-onshapepy.core.utils">onshapepy.utils module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#utils">utils</a></li>
 </ul>
@@ -191,12 +188,18 @@
 <code class="descname">insert</code><span class="sig-paren">(</span><em>part</em>, <em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/assembly.html#Assembly.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.assembly.Assembly.insert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Insert a part into this assembly.</p>
 <dl class="docutils">
-<dt>part</dt>
-<dd>A Part instance that will be inserted.</dd>
-<dt>client</dt>
-<dd>A Client instance that does the inserting.</dd>
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>part (onshapepy.part.Part) A Part instance that will be inserted.</li>
+<li>client (onshapepy.core.client.Client) A Client instance that does the inserting.</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
 </dl>
-<p>Response from the server</p>
 </dd></dl>
 
 </dd></dl>
@@ -210,7 +213,7 @@
 Function names should be equivalent to the OnShape REST API names</p>
 <dl class="class">
 <dt id="onshapepy.core.client.Client">
-<em class="property">class </em><code class="descclassname">onshapepy.core.client.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>user_conf=ordereddict([('creds'</em>, <em>ordereddict([('access_key'</em>, <em>'115x69poJHLMXAaGGSJE1iQa')</em>, <em>('secret_key'</em>, <em>'ijnNh1x1uoBlIELa15BZZckYYmLTXGBlJQmHTZrhGNA9D5g5')]))</em>, <em>('logging'</em>, <em>False)])</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/core/client.html#Client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.core.client.Client" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">onshapepy.core.client.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>conf=None</em>, <em>conf_file='.onshapepy'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/core/client.html#Client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.core.client.Client" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Defines methods for testing the Onshape API. Comes with several methods:</p>
 <ul class="simple">
@@ -469,6 +472,19 @@ script (str): A FeatureScript function to run.</dd>
 </dd></dl>
 
 <dl class="method">
+<dt id="onshapepy.core.client.Client.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>conf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/core/client.html#Client.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.core.client.Client.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the client with a new configuration</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>conf (dict): a client configuration dictionary.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="onshapepy.core.client.Client.update_configuration">
 <code class="descname">update_configuration</code><span class="sig-paren">(</span><em>did</em>, <em>wid</em>, <em>eid</em>, <em>payload</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/core/client.html#Client.update_configuration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.core.client.Client.update_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update the configuration specified in the payload</p>
@@ -560,8 +576,6 @@ script (str): A FeatureScript function to run.</dd>
 </div>
 <div class="section" id="module-onshapepy.part">
 <span id="onshapepy-part-module"></span><h2>onshapepy.part module<a class="headerlink" href="#module-onshapepy.part" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="part">
-<h3>part<a class="headerlink" href="#part" title="Permalink to this headline">¶</a></h3>
 <p>OnShape part that maps to a part studio</p>
 <dl class="class">
 <dt id="onshapepy.part.Configuration">
@@ -587,8 +601,11 @@ to strings. Note that Enum names are autogenerated by OnShape and do not match t
 <code class="descname">params</code><a class="headerlink" href="#onshapepy.part.Configuration.params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the params of response data from the API.</p>
 <dl class="docutils">
-<dt>d: dict</dt>
-<dd>Dictionary mapping of all configuration values</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>d (dict): Dictionary mapping of all configuration values</li>
+</ul>
+</dd>
 </dl>
 </dd></dl>
 
@@ -646,7 +663,6 @@ updates the part will then create a new instance of part to be used.</p>
 
 </dd></dl>
 
-</div>
 </div>
 <div class="section" id="module-onshapepy.core.utils">
 <span id="onshapepy-utils-module"></span><h2>onshapepy.utils module<a class="headerlink" href="#module-onshapepy.core.utils" title="Permalink to this headline">¶</a></h2>
@@ -720,7 +736,7 @@ updates the part will then create a new instance of part to be used.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.11',
+            VERSION:'0.0.12',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
