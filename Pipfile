@@ -8,6 +8,7 @@ requests = "*"
 pint = "*"
 "ruamel.yaml" = "*"
 numpy = "*"
+sympy = "*"
 
 [dev-packages]
 codecov = "*"
