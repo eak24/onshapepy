@@ -11,6 +11,10 @@ def test_new_doc(client):
     new_doc = client.new_document(public=True).json()
     assert new_doc['name'] == 'Test Document'
 
+def test_copy_workspace(client):
+    res = client.copy_workspace(uri.as_dict(), "Test 2")
+    assert res.status_code == 200
+
 def test_encode_configuration(client):
     s = client.encode_configuration(uri.did, uri.eid, {"Length": "5 meters", "height": "2 meters"})
     assert s == 'Length=5+meters;height=2+meters'

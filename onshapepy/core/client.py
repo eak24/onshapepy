@@ -154,6 +154,25 @@ class Client():
 
         return self._api.request('get', '/api/documents')
 
+    def copy_workspace(self, uri, new_name):
+        '''
+        Copy the current workspace.
+
+        Args:
+            - uri (dict): the uri of the workspace being copied. Needs to have a did and wid key.
+            - new_name (str): the new name of the copied workspace.
+
+        Returns:
+            - requests.Response: Onshape response data
+        '''
+
+        payload = {
+            'isPublic': True,
+            'newName': new_name
+        }
+
+        return self._api.request('post', '/api/documents/' + uri['did'] + '/workspaces/' + uri['wvm'] + '/copy', body=payload)
+
     def create_assembly(self, did, wid, name='My Assembly'):
         '''
         Creates a new assembly element in the specified document / workspace.
@@ -284,7 +303,8 @@ class Client():
           "isWholePartStudio": True,
           "configuration": self.encode_configuration(part_uri["did"], part_uri["eid"], configuration)
         }
-        return self._api.request('post', '/api/assemblies/d/' + assembly_uri["did"] + '/w/' + assembly_uri["wvm"] + '/e/' + assembly_uri["eid"] + '/instances', body=payload)
+        return self._api.request('post', '/api/assemblies/d/' + assembly_uri["did"] + '/' + assembly_uri["wvm_type"] +
+                                 '/' + assembly_uri["wvm"] + '/e/' + assembly_uri["eid"] + '/instances', body=payload)
 
     def encode_configuration(self, did, eid, parameters):
         '''

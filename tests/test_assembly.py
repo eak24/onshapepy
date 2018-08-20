@@ -1,6 +1,6 @@
-from onshapepy.core.client import Client
 
-def test_insert(cube, assembly):
+
+def test_insert(versioned_cube, assembly):
 
     # Insert into the assembly
-    assembly.insert(cube, Client())
+    assembly.insert(versioned_cube)

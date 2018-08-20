@@ -3,6 +3,7 @@
 """
 
 from onshapepy.uri import Uri
+from onshapepy.core.context import Context
 import json
 
 
@@ -10,7 +11,7 @@ class Assembly:
 
 
     def __init__(self, url):
-        """ Connect to an assembly that points to the assembly specified with did, wid and eid.
+        """ Connect to an assembly that points to the assembly specified with the url.
 
         Args:
             - url (str): The url of the onshape item
@@ -18,15 +19,17 @@ class Assembly:
         self.uri = Uri(url)
 
 
-    def insert(self, part, client):
+    def insert(self, part):
         """ Insert a part into this assembly.
 
         Args:
             - part (onshapepy.part.Part) A Part instance that will be inserted.
-            - client (onshapepy.core.client.Client) A Client instance that does the inserting.
 
         Returns:
             - requests.Response: Onshape response data
 
         """
-        pass
+        params = {k: str(v) for k,v in part.params.items()}
+        c = Context().client
+        res=c.create_assembly_instance(self.uri.as_dict(), part.uri.as_dict(), params)
+        return res
