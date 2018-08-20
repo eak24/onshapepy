@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>OnShapePy Package &mdash; OnShapePy 0.0.13 documentation</title>
+  <title>OnShapePy Package &mdash; OnShapePy 0.0.14 documentation</title>
   
 
   
@@ -26,10 +26,12 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/youtube.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/youtube.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="OnShapePy Configuration" href="configuration.html" />
-    <link rel="prev" title="Welcome to onshapepy’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Welcome to the OnShapePy Documentation!" href="index.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -58,7 +60,7 @@
             
             
               <div class="version">
-                0.0.13
+                0.0.14
               </div>
             
           
@@ -100,10 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#utils">utils</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-onshapepy">Module contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#onshapepy">onshapepy</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-onshapepy">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">OnShapePy Configuration</a></li>
@@ -185,13 +184,12 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="method">
 <dt id="onshapepy.assembly.Assembly.insert">
-<code class="descname">insert</code><span class="sig-paren">(</span><em>part</em>, <em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/assembly.html#Assembly.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.assembly.Assembly.insert" title="Permalink to this definition">¶</a></dt>
+<code class="descname">insert</code><span class="sig-paren">(</span><em>part</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/assembly.html#Assembly.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.assembly.Assembly.insert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Insert a part into this assembly.</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd><ul class="first last simple">
 <li>part (onshapepy.part.Part) A Part instance that will be inserted.</li>
-<li>client (onshapepy.core.client.Client) A Client instance that does the inserting.</li>
 </ul>
 </dd>
 <dt>Returns:</dt>
@@ -229,6 +227,25 @@ Function names should be equivalent to the OnShape REST API names</p>
 </ul>
 </dd>
 </dl>
+<dl class="method">
+<dt id="onshapepy.core.client.Client.copy_workspace">
+<code class="descname">copy_workspace</code><span class="sig-paren">(</span><em>uri</em>, <em>new_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/core/client.html#Client.copy_workspace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.core.client.Client.copy_workspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy the current workspace.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last simple">
+<li>uri (dict): the uri of the workspace being copied. Needs to have a did and wid key.</li>
+<li>new_name (str): the new name of the copied workspace.</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>requests.Response: Onshape response data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="onshapepy.core.client.Client.create_assembly">
 <code class="descname">create_assembly</code><span class="sig-paren">(</span><em>did</em>, <em>wid</em>, <em>name='My Assembly'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onshapepy/core/client.html#Client.create_assembly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#onshapepy.core.client.Client.create_assembly" title="Permalink to this definition">¶</a></dt>
@@ -687,10 +704,6 @@ updates the part will then create a new instance of part to be used.</p>
 </div>
 <div class="section" id="module-onshapepy">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-onshapepy" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="onshapepy">
-<h3>onshapepy<a class="headerlink" href="#onshapepy" title="Permalink to this headline">¶</a></h3>
-<p>Demonstrates usage of API keys for the Onshape REST API</p>
-</div>
 </div>
 </div>
 
@@ -705,7 +718,7 @@ updates the part will then create a new instance of part to be used.</p>
         <a href="configuration.html" class="btn btn-neutral float-right" title="OnShapePy Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to onshapepy’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Welcome to the OnShapePy Documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -736,7 +749,7 @@ updates the part will then create a new instance of part to be used.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.13',
+            VERSION:'0.0.14',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

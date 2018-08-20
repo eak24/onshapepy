@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>onshapepy.core.client &mdash; OnShapePy 0.0.13 documentation</title>
+  <title>onshapepy.core.client &mdash; OnShapePy 0.0.14 documentation</title>
   
 
   
@@ -26,6 +26,8 @@
 
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/youtube.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/youtube.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 
@@ -56,7 +58,7 @@
             
             
               <div class="version">
-                0.0.13
+                0.0.14
               </div>
             
           
@@ -303,6 +305,25 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents&#39;</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="Client.copy_workspace"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.copy_workspace">[docs]</a>    <span class="k">def</span> <span class="nf">copy_workspace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">new_name</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Copy the current workspace.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            - uri (dict): the uri of the workspace being copied. Needs to have a did and wid key.</span>
+<span class="sd">            - new_name (str): the new name of the copied workspace.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - requests.Response: Onshape response data</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;isPublic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s1">&#39;newName&#39;</span><span class="p">:</span> <span class="n">new_name</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s1">&#39;did&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/workspaces/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s1">&#39;wvm&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/copy&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="Client.create_assembly"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.create_assembly">[docs]</a>    <span class="k">def</span> <span class="nf">create_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;My Assembly&#39;</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Creates a new assembly element in the specified document / workspace.</span>
@@ -433,7 +454,8 @@
           <span class="s2">&quot;isWholePartStudio&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
           <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode_configuration</span><span class="p">(</span><span class="n">part_uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">],</span> <span class="n">part_uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">],</span> <span class="n">configuration</span><span class="p">)</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/assemblies/d/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/w/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;wvm&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/instances&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/assemblies/d/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;wvm_type&quot;</span><span class="p">]</span> <span class="o">+</span>
+                                 <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;wvm&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span> <span class="n">assembly_uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/instances&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Client.encode_configuration"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.encode_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">encode_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">eid</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
@@ -563,7 +585,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.13',
+            VERSION:'0.0.14',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

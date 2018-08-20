@@ -1,4 +1,4 @@
-Welcome to onshapepy's documentation!
+Welcome to the OnShapePy Documentation!
 =============================================
 
 OnShapePy gives you the ability to control OnShape configurable parts with Python, effectively unlocking the vast
@@ -7,11 +7,11 @@ Python scientific libraries to OnShape parts.
 Quick video demo
 ------------------
 
-See how to connect to a PartStudio and adjust parameters from python below!
-
 .. raw:: html
 
-    <iframe src="https://player.vimeo.com/video/285497632" width="700" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <div class="vid-container">
+        <iframe width="700" height="394" src="https://www.youtube.com/embed/tpqhwz4zX9s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
 Straight to the code
 ---------------------
@@ -26,7 +26,7 @@ First specify your credentials in a file named: "~/.onshapepy". Get your access 
 
 **Note: For more complex configurations, see :ref:`OnShapePy Configuration <configuration_file>`.**
 
-Then follow along with the code below:
+Then follow along with the Python code below:
 
 .. code-block:: Python
 
