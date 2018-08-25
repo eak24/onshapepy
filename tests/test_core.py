@@ -30,3 +30,6 @@ def test_get_configuration(client):
 def test_client_without_file():
     with pytest.raises(AssertionError):
         client = Client(conf_file="This file doesn't exist")
+
+def test_document_setup(document):
+    assert 10+5 == 15
