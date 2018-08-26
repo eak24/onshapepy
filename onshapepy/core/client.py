@@ -400,3 +400,7 @@ class Client():
         return self._api.request('post',
                                  '/api/partstudios/d/' + uri["did"] + '/' + uri["wvm_type"] + '/' + uri["wvm"] + '/e/' +
                                  uri["eid"] + '/featurescript', body=payload, headers=req_headers)
+
+    def element_list(self, uri):
+        return self._api.request('get',
+                                 '/api/documents/d/' + uri["did"] + '/' + uri["wvm_type"] + '/' + uri["wvm"] + '/elements')

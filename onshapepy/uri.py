@@ -27,13 +27,15 @@ class Uri():
             the URL of the OnShape element
 
         """
-        path = parse.urlparse(url).path.split("/")
-
         self.url = url
-        self.wvm_type = path[3]
-        self.did = path[2]
-        self.eid = path[6]
-        self.wvm = path[4]
+        path = parse.urlparse(url).path.split("/")
+        # Expected parameters in the path
+        d_expected = {3: "wvm_type", 2: "did", 6: "eid", 4: "wvm"}
+        for index, name in d_expected.items():
+            try:
+                setattr(self, name, path[index])
+            except IndexError:
+                pass
 
     def as_dict(self):
         """ Return the URI object as a dictionary"""
