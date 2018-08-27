@@ -27,7 +27,6 @@ class Uri():
             the URL of the OnShape element
 
         """
-        self.url = url
         path = parse.urlparse(url).path.split("/")
         # Expected parameters in the path
         d_expected = {3: "wvm_type", 2: "did", 6: "eid", 4: "wvm"}
@@ -36,6 +35,20 @@ class Uri():
                 setattr(self, name, path[index])
             except IndexError:
                 pass
+
+    @property
+    def url(self):
+        attr_list = ["did", "wvm_type", "wvm", "eid"]
+        id_list = []
+        for attr in attr_list:
+            try:
+                id_list.append(getattr(self,attr))
+            except AttributeError:
+                pass
+        in_betweens = ["https://cad.onshape.com/documents/", "/", "/", "/e/"]
+        # interleave the two lists:
+        url = [val for pair in zip(in_betweens, id_list) for val in pair]
+        return "".join(url)
 
     def as_dict(self):
         """ Return the URI object as a dictionary"""

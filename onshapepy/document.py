@@ -5,9 +5,17 @@ from onshapepy.core.utils import ElementType
 
 
 class Document:
-    def __init__(self, url, copy=False, name=None):
+    def __init__(self, url, copy=False, name=None, version=None):
         """Link to/copy a document. If copy is set to true, then make a copy of that workspace. If copy is set to false,
-        load the document specified. If the url is an empty string and name is set, make a new, blank document"""
+        load the document specified. If the url is an empty string and name is set, make a new, blank document.
+
+        Args:
+            - url (str): The URL of the document to be copied.
+            - copy (bool): Whether or not to copy the document.
+            - name (str): The name of the copied or new document.
+            - version (str): The Onshape version name of the version to be copied or referenced.
+
+            """
         c = Context().client
 
         self.json = None
@@ -15,7 +23,18 @@ class Document:
 
         # Make a copy:
         if url and copy and name:
-            res = c.copy_workspace(Uri(url).as_dict(), name)
+            uri = Uri(url)
+            # If a version is specified, set/override the uri/url version TODO:
+            # if version:
+            #     for v in c.get_versions(uri.as_dict()).json():
+            #         if v['name'] == version:
+            #             uri.wvm = v['id']
+            #             uri.wvm_type = 'v'
+            #             break
+            # res = c.create_workspace(uri.did, name, version_id=uri.wvm)
+            # uri.wvm = res.json()['id']
+            # uri.wvm_type = 'w'
+            res = c.copy_workspace(uri.as_dict(), name)
             payload = res.json()
             url = 'https://cad.onshape.com/documents/' + payload["newDocumentId"] + "/w/" + payload["newWorkspaceId"]
             self.uri = Uri(url)
@@ -24,7 +43,7 @@ class Document:
             self.uri = Uri(url)
         # Make a new, blank doc:
         elif name:
-            res = c.new_document(name=name, public=True)
+            res = c.create_document(name=name, public=True)
             self.uri = Uri('https://cad.onshape.com/documents/' + res.json()["id"])
 
         self.update()

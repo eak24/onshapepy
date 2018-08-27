@@ -1,8 +1,8 @@
-Welcome to the OnShapePy Documentation!
+Welcome to the OnshapePy Documentation!
 =============================================
 
-OnShapePy gives you the ability to control OnShape configurable parts with Python, effectively unlocking the vast
-Python scientific libraries to OnShape parts.
+OnshapePy gives you the ability to control Onshape configurable parts with Python, effectively unlocking the vast
+Python scientific libraries to Onshape parts.
 
 Quick video demo
 ------------------
@@ -24,7 +24,8 @@ First specify your credentials in a file named: "~/.onshapepy". Get your access 
         access_key: *******YOUR API KEY*******
         secret_key: *******YOUR API SECRET****
 
-**Note: For more complex configurations, see :ref:`OnShapePy Configuration <configuration_file>`.**
+.. important::
+    Note: For more complex configurations, see :ref:`configuration`.
 
 Then follow along with the Python code below:
 
@@ -49,8 +50,9 @@ Then follow along with the Python code below:
    :maxdepth: 2
    :caption: Contents:
 
-   onshapepy.rst
    configuration.rst
+   testing.rst
+   onshapepy.rst
 
 
 

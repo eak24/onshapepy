@@ -79,7 +79,7 @@ class Client():
 
 
 
-    def new_document(self, name='Test Document', owner_type=0, public=False):
+    def create_document(self, name='Test Document', owner_type=0, public=True):
         '''
         Create a new document.
 
@@ -172,6 +172,29 @@ class Client():
         }
 
         return self._api.request('post', '/api/documents/' + uri['did'] + '/workspaces/' + uri['wvm'] + '/copy', body=payload)
+
+    def create_workspace(self, did, name, version_id=None):
+        '''
+        Create a workspace in the specified document.
+
+        Args:
+            - did (str): the document id of where to create the new workspace
+            - name (str): the new name of the copied workspace.
+            - version_id (str): the ID of the version to be copied into a new workspace
+
+        Returns:
+            - requests.Response: Onshape response data
+        '''
+
+        payload = {
+            'isPublic': True,
+            'name': name,
+        }
+
+        if version_id:
+            payload['versionId'] = version_id
+
+        return self._api.request('post', '/api/documents/d/' + did + '/workspaces', body=payload)
 
     def create_assembly(self, did, wid, name='My Assembly'):
         '''
@@ -403,4 +426,8 @@ class Client():
 
     def element_list(self, uri):
         return self._api.request('get',
-                                 '/api/documents/d/' + uri["did"] + '/' + uri["wvm_type"] + '/' + uri["wvm"] + '/elements')
+                                 '/api/documents/d/' + uri["did"] + '/' + uri["wvm_type"] + '/' + uri["wvm"] +
+                                 '/elements')
+
+    def get_versions(self, uri):
+        return self._api.request('get', '/api/documents/d/' + uri["did"] + '/versions')
