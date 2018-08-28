@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>onshapepy.part &mdash; OnShapePy 0.0.14 documentation</title>
+  <title>onshapepy.part &mdash; OnShapePy 0.0.16 documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.0.14
+                0.0.16
               </div>
             
           
@@ -84,8 +84,9 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration.html">OnshapePy Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../onshapepy.html">OnShapePy Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../configuration.html">OnShapePy Configuration</a></li>
 </ul>
 
             
@@ -173,11 +174,16 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
-<span class="sd">            - url (str): the url of the Part Studio</span>
+<span class="sd">            - url (str): the url of the Part Studio Or the uri</span>
 <span class="sd">            - params (dict, opt): dict of parameter objects. These are objects that return valid parameter settings</span>
 <span class="sd">                when encoded as a string.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">Uri</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="c1"># Accept either a url OR uri</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">Uri</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">Uri</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="c1">#post defined params if necessary</span>
         <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
@@ -351,7 +357,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.0.14',
+            VERSION:'0.0.16',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

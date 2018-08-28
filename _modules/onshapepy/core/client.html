@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>onshapepy.core.client &mdash; OnShapePy 0.0.14 documentation</title>
+  <title>onshapepy.core.client &mdash; OnShapePy 0.0.16 documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.0.14
+                0.0.16
               </div>
             
           
@@ -84,8 +84,9 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">OnshapePy Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../onshapepy.html">OnShapePy Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">OnShapePy Configuration</a></li>
 </ul>
 
             
@@ -230,7 +231,7 @@
 
 
 
-<div class="viewcode-block" id="Client.new_document"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.new_document">[docs]</a>    <span class="k">def</span> <span class="nf">new_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Test Document&#39;</span><span class="p">,</span> <span class="n">owner_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">public</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.create_document"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.create_document">[docs]</a>    <span class="k">def</span> <span class="nf">create_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Test Document&#39;</span><span class="p">,</span> <span class="n">owner_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">public</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Create a new document.</span>
 
@@ -323,6 +324,29 @@
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s1">&#39;did&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/workspaces/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s1">&#39;wvm&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/copy&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Client.create_workspace"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.create_workspace">[docs]</a>    <span class="k">def</span> <span class="nf">create_workspace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">version_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create a workspace in the specified document.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            - did (str): the document id of where to create the new workspace</span>
+<span class="sd">            - name (str): the new name of the copied workspace.</span>
+<span class="sd">            - version_id (str): the ID of the version to be copied into a new workspace</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - requests.Response: Onshape response data</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;isPublic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">version_id</span><span class="p">:</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;versionId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">version_id</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents/d/&#39;</span> <span class="o">+</span> <span class="n">did</span> <span class="o">+</span> <span class="s1">&#39;/workspaces&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Client.create_assembly"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.create_assembly">[docs]</a>    <span class="k">def</span> <span class="nf">create_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">did</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;My Assembly&#39;</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
@@ -550,7 +574,15 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span>
                                  <span class="s1">&#39;/api/partstudios/d/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;wvm_type&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;wvm&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/e/&#39;</span> <span class="o">+</span>
-                                 <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/featurescript&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">req_headers</span><span class="p">)</span></div></div>
+                                 <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;eid&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/featurescript&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">req_headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Client.element_list"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.element_list">[docs]</a>    <span class="k">def</span> <span class="nf">element_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;/api/documents/d/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;wvm_type&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;wvm&quot;</span><span class="p">]</span> <span class="o">+</span>
+                                 <span class="s1">&#39;/elements&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Client.get_versions"><a class="viewcode-back" href="../../../onshapepy.html#onshapepy.core.client.Client.get_versions">[docs]</a>    <span class="k">def</span> <span class="nf">get_versions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/documents/d/&#39;</span> <span class="o">+</span> <span class="n">uri</span><span class="p">[</span><span class="s2">&quot;did&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/versions&#39;</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
@@ -585,7 +617,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.14',
+            VERSION:'0.0.16',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Testing &mdash; OnShapePy 0.0.16 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/youtube.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/youtube.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="OnShapePy Package" href="onshapepy.html" />
+    <link rel="prev" title="OnshapePy Configuration" href="configuration.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OnShapePy
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.16
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">OnshapePy Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-tests">Writing Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview-of-tests">Overview of Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-against-a-custom-onshape-document">Testing Against a Custom Onshape Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contributing-your-tests">Contributing Your Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="onshapepy.html">OnShapePy Package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OnShapePy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Testing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/testing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="testing">
+<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-tests">
+<h2>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h2>
+<p>In order to run tests, you must first have:</p>
+<ul class="simple">
+<li>onshapepy repo cloned to your machine</li>
+<li>pytest installed</li>
+<li>pipenv installed</li>
+<li>onshapepy configured</li>
+</ul>
+<p>In short, you’ll have to run the following commands:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">install</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">AguaClara</span><span class="o">/</span><span class="n">onshapepy</span><span class="o">.</span><span class="n">git</span> <span class="c1"># Clone the repo</span>
+<span class="n">cd</span> <span class="n">onshapepy</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pipenv</span> <span class="c1"># Install pipenv</span>
+<span class="n">pipenv</span> <span class="n">install</span> <span class="o">--</span><span class="n">dev</span> <span class="c1"># Install dev and regular dependencies and make a virtual environment</span>
+<span class="n">nano</span> <span class="o">~/.</span><span class="n">onshapepy</span> <span class="c1"># Now follow the instructions on how to configure onshapepy in the documentation</span>
+<span class="n">pipenv</span> <span class="n">shell</span>  <span class="c1"># Go into the onshapepy virtual environment</span>
+<span class="n">pytest</span> <span class="c1"># Run all tests</span>
+</pre></div>
+</div>
+<p>That should run all the tests and all tests should have passed if you have permission to change the tests document. To run additional tests, just navigate back to the onshape repo and run <code class="code docutils literal notranslate"><span class="pre">pytest</span></code>. You must have the virtual environment already activated with <code class="code docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">shell</span></code>. To exit the environment, run <code class="code docutils literal notranslate"><span class="pre">exit</span></code>.</p>
+</div>
+<div class="section" id="writing-tests">
+<h2>Writing Tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="overview-of-tests">
+<h3>Overview of Tests<a class="headerlink" href="#overview-of-tests" title="Permalink to this headline">¶</a></h3>
+<p>Tests are an integral part of development. They communicate usage, ensure against accidental regression, and encourage good coding practices. A library that isn’t well tested is almost certain to become unmanageable. OnshapePy takes testing seriously. We pride ourselves on maintaining a coverage of greater than 80%. Please make sure to write tests before submitting a PR!</p>
+<p>Because OnshapePy’s main role is to work with the Onshape API, so must the tests. This means that a large number of the tests talk to the Onshape servers using your user credentials. Because of this, the OnshapePy tests “expect” a certain Onshape testing environment to be setup that the tests can be run against. To do this, we manage an <a class="reference external" href="https://cad.onshape.com/documents/2d47b6abec9d1de1d2538372/w/39e483948767f72c97d2792f">“OnshapePy Tests” document on Onshape.</a>. This document contains various PartStudios against which code can be tested. To ensure “OnshapePy Tests” is always in a known state, we create versions of the document that correspond to the particular release of OnshapePy. These versions of the document are then copied and then tested against. Through this technique, we can let anyone with Onshape credentials run tests against OnshapePy.</p>
+<p>The default testing procedure when running OnshapePy tests is:</p>
+<ol class="arabic simple">
+<li>Copy the document or version specified - either the default testing library or one specified in the command line.</li>
+<li>Run tests within that document - you’ll need to have write and read access to the document.</li>
+<li>Put the document into the trash - this is to avoid cluttering your document space.</li>
+</ol>
+</div>
+<div class="section" id="testing-against-a-custom-onshape-document">
+<h3>Testing Against a Custom Onshape Document<a class="headerlink" href="#testing-against-a-custom-onshape-document" title="Permalink to this headline">¶</a></h3>
+<p>To test against a custom Onshape document, simply specify the document URL in the pytest command like so: <code class="code docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">--onshape-document</span> <span class="pre">&lt;YOUR_DOCUMENT_URL&gt;</span></code>. Using this command, you can use your own document to write tests against.</p>
+</div>
+<div class="section" id="contributing-your-tests">
+<h3>Contributing Your Tests<a class="headerlink" href="#contributing-your-tests" title="Permalink to this headline">¶</a></h3>
+<p>Your tests should use a branch of the main workspace of the current testing library. That way, when you submit a PR, the OnshapePy team can easily incorporate your tests into the official testing library. Once you’re sure all your tests run against your version of the code, submit a PR through GitHub. The PR should include a reference to your testing document.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="onshapepy.html" class="btn btn-neutral float-right" title="OnShapePy Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configuration.html" class="btn btn-neutral" title="OnshapePy Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ethan Keller.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.16',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

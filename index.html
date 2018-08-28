@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to the OnShapePy Documentation! &mdash; OnShapePy 0.0.14 documentation</title>
+  <title>Welcome to the OnshapePy Documentation! &mdash; OnShapePy 0.0.16 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="_static/css/youtube.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="OnShapePy Package" href="onshapepy.html" /> 
+    <link rel="next" title="OnshapePy Configuration" href="configuration.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.0.14
+                0.0.16
               </div>
             
           
@@ -85,8 +85,9 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">OnshapePy Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="onshapepy.html">OnShapePy Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="configuration.html">OnShapePy Configuration</a></li>
 </ul>
 
             
@@ -132,7 +133,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Welcome to the OnShapePy Documentation!</li>
+      <li>Welcome to the OnshapePy Documentation!</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -152,9 +153,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="welcome-to-the-onshapepy-documentation">
-<h1>Welcome to the OnShapePy Documentation!<a class="headerlink" href="#welcome-to-the-onshapepy-documentation" title="Permalink to this headline">¶</a></h1>
-<p>OnShapePy gives you the ability to control OnShape configurable parts with Python, effectively unlocking the vast
-Python scientific libraries to OnShape parts.</p>
+<h1>Welcome to the OnshapePy Documentation!<a class="headerlink" href="#welcome-to-the-onshapepy-documentation" title="Permalink to this headline">¶</a></h1>
+<p>OnshapePy gives you the ability to control Onshape configurable parts with Python, effectively unlocking the vast
+Python scientific libraries to Onshape parts.</p>
 <div class="section" id="quick-video-demo">
 <h2>Quick video demo<a class="headerlink" href="#quick-video-demo" title="Permalink to this headline">¶</a></h2>
 <div class="vid-container">
@@ -168,7 +169,10 @@ Python scientific libraries to OnShape parts.</p>
     secret_key: *******YOUR API SECRET****
 </pre></div>
 </div>
-<p><strong>Note: For more complex configurations, see :ref:`OnShapePy Configuration &lt;configuration_file&gt;`.</strong></p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note: For more complex configurations, see <a class="reference internal" href="configuration.html#configuration"><span class="std std-ref">OnshapePy Configuration</span></a>.</p>
+</div>
 <p>Then follow along with the Python code below:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">onshapepy.play</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -188,6 +192,17 @@ Python scientific libraries to OnShape parts.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">OnshapePy Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-from-a-file">Configuration From a File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-from-python">Configuration From Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-options">Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#writing-tests">Writing Tests</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="onshapepy.html">OnShapePy Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="onshapepy.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy.assembly">onshapepy.assembly module</a></li>
@@ -196,12 +211,6 @@ Python scientific libraries to OnShape parts.</p>
 <li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy.part">onshapepy.part module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy.core.utils">onshapepy.utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="onshapepy.html#module-onshapepy">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="configuration.html">OnShapePy Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-from-a-file">Configuration From a File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-from-python">Configuration From Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-options">Configuration Options</a></li>
 </ul>
 </li>
 </ul>
@@ -225,7 +234,7 @@ Python scientific libraries to OnShape parts.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="onshapepy.html" class="btn btn-neutral float-right" title="OnShapePy Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="configuration.html" class="btn btn-neutral float-right" title="OnshapePy Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -257,7 +266,7 @@ Python scientific libraries to OnShape parts.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.14',
+            VERSION:'0.0.16',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

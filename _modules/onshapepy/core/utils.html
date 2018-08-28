@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>onshapepy.core.utils &mdash; OnShapePy 0.0.14 documentation</title>
+  <title>onshapepy.core.utils &mdash; OnShapePy 0.0.16 documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.0.14
+                0.0.16
               </div>
             
           
@@ -84,8 +84,9 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">OnshapePy Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../onshapepy.html">OnShapePy Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">OnShapePy Configuration</a></li>
 </ul>
 
             
@@ -158,6 +159,7 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">logging.config</span> <span class="k">import</span> <span class="n">dictConfig</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="k">import</span> <span class="n">Enum</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;log&#39;</span>
@@ -249,6 +251,11 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">power</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">units_s</span> <span class="o">=</span> <span class="n">units_s</span> <span class="o">+</span> <span class="s2">&quot;**&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">units_s</span>
+
+<span class="k">class</span> <span class="nc">ElementType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">ANY</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">PARTSTUDIO</span> <span class="o">=</span> <span class="s1">&#39;PARTSTUDIO&#39;</span>
+    <span class="n">ASSEMBLY</span> <span class="o">=</span> <span class="s1">&#39;ASSEMBLY&#39;</span>
 </pre></div>
 
            </div>
@@ -283,7 +290,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.14',
+            VERSION:'0.0.16',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
