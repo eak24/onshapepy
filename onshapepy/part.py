@@ -22,11 +22,16 @@ class Part():
     def __init__(self, url, params=None):
         """
         Args:
-            - url (str): the url of the Part Studio
+            - url (str): the url of the Part Studio Or the uri
             - params (dict, opt): dict of parameter objects. These are objects that return valid parameter settings
                 when encoded as a string.
         """
-        self.uri = Uri(url)
+        # Accept either a url OR uri
+        if isinstance(url, Uri):
+            self.uri = url
+        else:
+            self.uri = Uri(url)
+
         self._configuration = Configuration(self)
         #post defined params if necessary
         if params:

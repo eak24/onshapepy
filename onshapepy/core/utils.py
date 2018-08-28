@@ -7,6 +7,7 @@ Handy functions for API key sample app
 
 import logging
 from logging.config import dictConfig
+from enum import Enum
 
 __all__ = [
     'log'
@@ -98,3 +99,8 @@ def parse_quantity(q):
         if not power == 1:
             units_s = units_s + "**" + str(power)
     return units_s
+
+class ElementType(Enum):
+    ANY = None
+    PARTSTUDIO = 'PARTSTUDIO'
+    ASSEMBLY = 'ASSEMBLY'
