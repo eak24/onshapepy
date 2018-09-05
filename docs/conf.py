@@ -19,7 +19,7 @@ sys.path.append(os.path.join(os.path.dirname(__name__), '..'))
 
 # -- Project information -----------------------------------------------------
 
-project = u'OnShapePy'
+project = u'OnshapePy'
 copyright = u'2018, Ethan Keller'
 author = u'Ethan Keller'
 

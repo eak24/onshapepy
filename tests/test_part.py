@@ -1,8 +1,6 @@
 from onshapepy.part import Configuration
-import pint
+from onshapepy.core.units import u
 import pytest
-
-u = pint.UnitRegistry()
 
 def test_get_part_params(cube):
     print(cube.params)

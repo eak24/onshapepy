@@ -7,8 +7,7 @@ from onshapepy.core.context import Context
 from onshapepy.core.utils import parse_quantity
 import json
 from onshapepy.uri import Uri
-import pint
-u = pint.UnitRegistry()
+from onshapepy.core.units import u
 q = u.Quantity
 
 
@@ -166,3 +165,4 @@ class Measurements:
             q = m["message"]['value']['message']
             m_dictionary[name] = u(parse_quantity(q))
         return m_dictionary
+

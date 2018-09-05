@@ -1,4 +1,4 @@
-OnShapePy Package
+OnshapePy Package
 =================
 
 Submodules
