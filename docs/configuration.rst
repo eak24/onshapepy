@@ -1,8 +1,8 @@
-.. _configuration_file:
+.. _configuration:
 
-OnShapePy Configuration
+OnshapePy Configuration
 =============================
-OnShapePy supports two ways to specify a configuration:
+OnshapePy supports two ways to specify a configuration:
 
 1. (Recommended) A **configuration file** placed within the user's home. It must be named ".onshapepy". It uses YAML syntax.
 2. Manually **configured within Python**. As long as this runs first, it will configure the session and ignore the configuration file.

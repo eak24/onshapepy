@@ -16,7 +16,11 @@ class Assembly:
         Args:
             - url (str): The url of the onshape item
         """
-        self.uri = Uri(url)
+        # Accept either a url OR uri
+        if isinstance(url, Uri):
+            self.uri = url
+        else:
+            self.uri = Uri(url)
 
 
     def insert(self, part):
