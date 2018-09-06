@@ -5,7 +5,7 @@ long_description = '''Access OnShape part configurations from your python interp
 
 setup(
     name= 'onshapepy',
-    version= '0.0.16',
+    version= '0.0.17',
     description= 'Drive part configurations from Python.',
     long_description= long_description,
     author= 'Ethan Keller',
