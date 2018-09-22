@@ -1,7 +1,7 @@
 """Represents an Onshape document"""
-from onshapepy.core.context import Context
 from onshapepy.uri import Uri
 from onshapepy.core.utils import ElementType
+from onshapepy.core.client import c
 
 
 class Document:
@@ -16,7 +16,6 @@ class Document:
             - version (str): The Onshape version name of the version to be copied or referenced.
 
             """
-        c = Context().client
 
         self.json = None
         self.e_list = None
@@ -50,12 +49,10 @@ class Document:
 
     def delete(self):
         """Delete the Onshape document"""
-        c = Context().client
         c.del_document(self.uri.did)
 
     def update(self):
         """All client calls to update this instance with Onshape."""
-        c = Context().client
         self.json = c.get_document(self.uri.did).json()
         self.e_list = c.element_list(self.uri.as_dict()).json()
 
@@ -73,7 +70,6 @@ class Document:
         Returns:
             - onshapepy.uri of the element
         """
-        c = Context().client
 
         for e in self.e_list:
             # if a type is specified and this isn't it, move to the next loop.

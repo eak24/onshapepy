@@ -25,12 +25,11 @@ Configuration From Python
 
 .. code-block:: python
 
-    from onshapepy.client import Client
+    from onshapepy.client import c
     configuration = {"creds" :{
                             "access_key" : "*******YOUR API KEY*******",
                             "secret_key" : "*******YOUR API SECRET****"}}
-    Client(configuration)
-
+    c.update(configuration)
 
 .. _configuration_options:
 

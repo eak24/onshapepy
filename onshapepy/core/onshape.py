@@ -46,8 +46,12 @@ class Onshape():
         '''
 
         self._url = stack
-        self._access_key = creds['access_key'].encode('utf-8')
-        self._secret_key = creds['secret_key'].encode('utf-8')
+        try:
+            self._access_key = creds['access_key'].encode('utf-8')
+            self._secret_key = creds['secret_key'].encode('utf-8')
+        except TypeError as e:
+            raise UserWarning("Specify a correct access key and secret key for the client")
+
         self._logging = logging
 
         if self._logging:

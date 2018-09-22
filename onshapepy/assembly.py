@@ -3,8 +3,8 @@
 """
 
 from onshapepy.uri import Uri
-from onshapepy.core.context import Context
 import json
+from onshapepy.core.client import c
 
 
 class Assembly:
@@ -34,6 +34,5 @@ class Assembly:
 
         """
         params = {k: str(v) for k,v in part.params.items()}
-        c = Context().client
         res=c.create_assembly_instance(self.uri.as_dict(), part.uri.as_dict(), params)
         return res

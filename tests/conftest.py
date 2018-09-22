@@ -2,9 +2,9 @@ import pytest
 from onshapepy.part import Part
 from onshapepy.assembly import Assembly
 from onshapepy.document import Document
-from onshapepy.core.context import Context
 from onshapepy.uri import Uri
 from datetime import datetime
+from onshapepy.core.client import c
 
 
 @pytest.fixture
@@ -25,8 +25,7 @@ def assembly(document):
 
 @pytest.fixture(scope="module")
 def client():
-    return Context().client
-
+    return c
 
 @pytest.fixture(scope="module")
 def document(client, onshape_version, onshape_document):

@@ -18,8 +18,7 @@ from ruamel.yaml import YAML
 
 yaml = YAML()
 
-
-class Client():
+class Client:
     '''
     Defines methods for testing the Onshape API. Comes with several methods:
 
@@ -59,10 +58,6 @@ class Client():
 
         if conf:
             default_conf.update(conf)
-
-        if not default_conf['creds']:
-            raise AssertionError("Please specify your OnShape acces_key and secret_key within the onshapepy "
-                                 "configuration file, by default located at 'home/.onshapepy'.")
 
         self.conf = default_conf
 
@@ -431,3 +426,7 @@ class Client():
 
     def get_versions(self, uri):
         return self._api.request('get', '/api/documents/d/' + uri["did"] + '/versions')
+
+
+# Start the default client. To change the client, just change this value.
+c=Client()

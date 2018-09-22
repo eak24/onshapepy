@@ -21,7 +21,7 @@ def test_get_configuration(client):
     assert res.status_code == 200
 
 def test_client_without_file():
-    with pytest.raises(AssertionError):
+    with pytest.raises(UserWarning):
         client = Client(conf_file="This file doesn't exist")
 
 def test_document_setup(document, client):
