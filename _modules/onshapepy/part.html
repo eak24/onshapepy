@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>onshapepy.part &mdash; OnshapePy 0.0.17 documentation</title>
+  <title>onshapepy.part &mdash; OnshapePy 0.0.18a documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.0.17
+                0.0.18a
               </div>
             
           
@@ -154,8 +154,7 @@
 <span class="sd">OnShape part that maps to a part studio</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="kn">from</span> <span class="nn">onshapepy.core.client</span> <span class="k">import</span> <span class="n">Client</span>
-<span class="kn">from</span> <span class="nn">onshapepy.core.context</span> <span class="k">import</span> <span class="n">Context</span>
+<span class="kn">from</span> <span class="nn">onshapepy.core.client</span> <span class="k">import</span> <span class="n">c</span>
 <span class="kn">from</span> <span class="nn">onshapepy.core.utils</span> <span class="k">import</span> <span class="n">parse_quantity</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">onshapepy.uri</span> <span class="k">import</span> <span class="n">Uri</span>
@@ -222,10 +221,9 @@
     <span class="k">def</span> <span class="nf">payload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Configuration.update"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Configuration.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.update"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Configuration.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">c</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Push params to OnShape and synchronize the local copy</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">Context</span><span class="p">()</span><span class="o">.</span><span class="n">client</span>
         <span class="n">uri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">uri</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">params</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
@@ -241,7 +239,7 @@
                 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                     <span class="n">m</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
-        <span class="n">res</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">update_configuration</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">did</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">wvm</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">eid</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">update_configuration</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">did</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">wvm</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">eid</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
 
         <span class="c1"># If it was a good request, update config to be consistent with online.</span>
         <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
@@ -251,8 +249,7 @@
         <span class="sd">&quot;&quot;&quot;Manually pull params defined in config from OnShape and return a python representation of the params.</span>
 <span class="sd">        Quantities are converted to pint quantities, Bools are converted to python bools and Enums are converted</span>
 <span class="sd">        to strings. Note that Enum names are autogenerated by OnShape and do not match the name on the OnShape UI.&quot;&quot;&quot;</span>
-        <span class="n">client</span> <span class="o">=</span> <span class="n">Context</span><span class="p">()</span><span class="o">.</span><span class="n">client</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">uri</span><span class="o">.</span><span class="n">as_dict</span><span class="p">())</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">uri</span><span class="o">.</span><span class="n">as_dict</span><span class="p">())</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -300,7 +297,6 @@
 
 <div class="viewcode-block" id="Measurements.update"><a class="viewcode-back" href="../../onshapepy.html#onshapepy.part.Measurements.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Update all local variable names to match OnShape. &quot;&quot;&quot;</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">Context</span><span class="p">()</span><span class="o">.</span><span class="n">client</span>
         <span class="n">uri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">uri</span>
         <span class="n">script</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        function(context, queries) {</span>
@@ -357,7 +353,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.0.17',
+            VERSION:'0.0.18a',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
